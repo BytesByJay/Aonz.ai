@@ -31,8 +31,8 @@ function initPageLoader() {
         }, 1000); // Minimum loading time for effect
     });
     
-    // Prevent body scroll while loading
-    document.body.style.overflow = 'hidden';
+    // Allow body scroll - loader disabled
+    // document.body.style.overflow = 'hidden';
 }
 
 // Mobile Menu Toggle Functionality
@@ -427,15 +427,41 @@ window.addEventListener('scroll', throttledScrollHandler);
 
 // Modern Animations and Effects
 function initModernAnimations() {
+    // Initialize particles with random positions
+    initParticleSystem();
+    
     // Parallax effect for hero section
     const hero = document.querySelector('.hero');
     if (hero) {
         window.addEventListener('scroll', throttle(() => {
             const scrolled = window.pageYOffset;
-            const parallax = scrolled * 0.5;
-            hero.style.transform = `translateY(${parallax}px)`;
+            const parallax = scrolled * 0.3;
+            const bgElements = hero.querySelector('.hero-bg-elements');
+            if (bgElements) {
+                bgElements.style.transform = `translateY(${parallax}px)`;
+            }
         }, 16));
     }
+}
+
+// Initialize Particle System
+function initParticleSystem() {
+    const particles = document.querySelectorAll('.particle');
+    particles.forEach((particle, index) => {
+        // Random horizontal position
+        const randomX = Math.random() * 100;
+        particle.style.left = randomX + '%';
+        
+        // Add random delay for infinite animation
+        const randomDelay = Math.random() * 10;
+        particle.style.animationDelay = randomDelay + 's';
+        
+        // Random size variation
+        const randomSize = 2 + Math.random() * 4;
+        particle.style.width = randomSize + 'px';
+        particle.style.height = randomSize + 'px';
+    });
+}
     
     // Enhanced button hover effects
     const buttons = document.querySelectorAll('.cta-button, .service-link, .product-cta');
