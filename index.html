@@ -66,7 +66,10 @@
                 </ul>
 
                 <div class="nav-actions">
-                    <button class="cta-button">Contact Us</button>
+                    <button class="cta-button" onclick="bookDemo()">
+                        <i class="fas fa-calendar-alt"></i>
+                        Book a Demo
+                    </button>
                     <div class="mobile-menu-toggle">
                         <span></span>
                         <span></span>
@@ -130,13 +133,17 @@
                 
                 <!-- CTA Section -->
                 <div class="hero-cta-section" data-aos="fade-up" data-aos-duration="800" data-aos-delay="800">
-                    <button class="hero-cta-primary">
-                        <span>See what we do</span>
-                        <i class="fas fa-arrow-right"></i>
+                    <button class="hero-cta-primary" onclick="bookDemo()">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Book a Demo</span>
                     </button>
-                    <button class="hero-cta-secondary">
-                        <i class="fas fa-play"></i>
-                        <span>Watch our story</span>
+                    <button class="hero-cta-secondary" onclick="scheduleCall()">
+                        <i class="fas fa-phone"></i>
+                        <span>Schedule a Call</span>
+                    </button>
+                    <button class="hero-cta-tertiary" onclick="getQuote()">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>Get Quote</span>
                     </button>
                 </div>
                 
@@ -422,8 +429,37 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <h2>Contact Us</h2>
-                    <h3>Fill a Form</h3>
-                    <p>Get in touch with our experts to discuss your digital transformation needs.</p>
+                    <h3>Get Started Today</h3>
+                    <p>Ready to transform your business? Choose the best way to connect with our experts.</p>
+                    
+                    <!-- Quick Action CTAs -->
+                    <div class="contact-quick-actions">
+                        <button class="quick-action-btn primary" onclick="bookDemo()">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div>
+                                <strong>Book a Demo</strong>
+                                <small>See our solutions in action</small>
+                            </div>
+                        </button>
+                        <button class="quick-action-btn secondary" onclick="scheduleCall()">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Schedule Call</strong>
+                                <small>Speak with an expert</small>
+                            </div>
+                        </button>
+                        <button class="quick-action-btn tertiary" onclick="getQuote()">
+                            <i class="fas fa-file-invoice"></i>
+                            <div>
+                                <strong>Get Quote</strong>
+                                <small>Custom pricing for you</small>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <div class="contact-divider">
+                        <span>or fill the form below</span>
+                    </div>
                     
                     <div class="contact-details">
                         <div class="contact-item">
@@ -436,7 +472,7 @@
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>contact@corptech.com</span>
+                            <span>contact@aonzai.com</span>
                         </div>
                     </div>
                 </div>
@@ -530,6 +566,29 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating CTA Widget -->
+    <div class="floating-cta" id="floatingCTA">
+        <div class="floating-cta-content">
+            <div class="floating-cta-text">
+                <span class="floating-cta-title">Ready to get started?</span>
+                <span class="floating-cta-subtitle">Talk to our experts today</span>
+            </div>
+            <div class="floating-cta-buttons">
+                <button class="floating-btn-primary" onclick="bookDemo()">
+                    <i class="fas fa-calendar-alt"></i>
+                    Book Demo
+                </button>
+                <button class="floating-btn-secondary" onclick="scheduleCall()">
+                    <i class="fas fa-phone"></i>
+                    Call Now
+                </button>
+            </div>
+            <button class="floating-cta-close" onclick="closeFloatingCTA()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
     <script>

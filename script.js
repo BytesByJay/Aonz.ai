@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initCTAButtons();
     initScrollToTop();
     initModernAnimations();
+    initFloatingCTA();
 });
 
 // Page Loader
@@ -650,3 +651,359 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Floating CTA Functionality
+function initFloatingCTA() {
+    const floatingCTA = document.getElementById('floatingCTA');
+    let hasShown = false;
+    
+    if (!floatingCTA) return;
+    
+    // Show floating CTA after scrolling down a bit
+    const handleScroll = throttle(() => {
+        const scrolled = window.scrollY > window.innerHeight * 0.6;
+        
+        if (scrolled && !hasShown && !floatingCTA.classList.contains('hide')) {
+            setTimeout(() => {
+                floatingCTA.classList.add('show');
+                hasShown = true;
+            }, 1500); // Show after 1.5 seconds of being in scroll position
+        }
+    }, 100);
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    // Auto hide after some time if no interaction
+    setTimeout(() => {
+        if (floatingCTA.classList.contains('show')) {
+            floatingCTA.style.opacity = '0.8';
+        }
+    }, 25000); // Fade after 25 seconds
+}
+
+// Close floating CTA
+function closeFloatingCTA() {
+    const floatingCTA = document.getElementById('floatingCTA');
+    if (floatingCTA) {
+        floatingCTA.classList.remove('show');
+        floatingCTA.classList.add('hide');
+    }
+}
+
+// CTA Button Functions
+function bookDemo() {
+    // You can integrate with your booking system here
+    showCTAModal('Book a Demo', 'Schedule a personalized demo of our AI solutions and see how we can transform your business.');
+    // Or redirect to booking page: window.open('https://calendly.com/your-link', '_blank');
+}
+
+function scheduleCall() {
+    // You can integrate with your calling system here
+    showCTAModal('Schedule a Call', 'Book a consultation call with our experts to discuss your specific needs and requirements.');
+    // Or redirect to scheduling page
+}
+
+function getQuote() {
+    // Scroll to contact form or open quote modal
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+        const headerHeight = document.querySelector('.header').offsetHeight;
+        const targetPosition = contactSection.offsetTop - headerHeight;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+        
+        // Highlight the form
+        setTimeout(() => {
+            const form = document.querySelector('.form');
+            if (form) {
+                form.style.border = '2px solid var(--color-primary)';
+                form.style.boxShadow = '0 0 20px rgba(168, 85, 247, 0.3)';
+                
+                setTimeout(() => {
+                    form.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                    form.style.boxShadow = 'none';
+                }, 3000);
+            }
+        }, 1000);
+    }
+}
+
+// Modal functionality for CTAs
+function showCTAModal(title, message) {
+    // Create modal if it doesn't exist
+    let modal = document.getElementById('ctaModal');
+    if (!modal) {
+        modal = createCTAModal();
+        document.body.appendChild(modal);
+    }
+    
+    // Update modal content
+    modal.querySelector('.modal-title').textContent = title;
+    modal.querySelector('.modal-message').textContent = message;
+    
+    // Show modal
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    
+    // Close floating CTA if it's open
+    closeFloatingCTA();
+}
+
+function createCTAModal() {
+    const modal = document.createElement('div');
+    modal.id = 'ctaModal';
+    modal.className = 'cta-modal';
+    modal.innerHTML = `
+        <div class="cta-modal-overlay" onclick="closeCTAModal()"></div>
+        <div class="cta-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"></h3>
+                <button class="modal-close" onclick="closeCTAModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="modal-message"></p>
+            <form class="modal-form" onsubmit="submitCTAForm(event)">
+                <div class="form-row">
+                    <input type="text" name="name" placeholder="Your Name *" required>
+                    <input type="email" name="email" placeholder="Your Email *" required>
+                </div>
+                <input type="tel" name="phone" placeholder="Your Phone Number">
+                <input type="text" name="company" placeholder="Company Name">
+                <textarea name="message" placeholder="Tell us about your needs..." rows="3"></textarea>
+                <div class="modal-buttons">
+                    <button type="submit" class="modal-btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Submit Request
+                    </button>
+                    <button type="button" class="modal-btn-secondary" onclick="closeCTAModal()">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    `;
+    
+    // Add modal styles
+    const modalStyle = document.createElement('style');
+    modalStyle.textContent = `
+        .cta-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .cta-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .cta-modal-content {
+            position: relative;
+            background: linear-gradient(135deg, var(--color-gray-800), var(--color-gray-900));
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-modal.show .cta-modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-title {
+            color: var(--color-white);
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--color-text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: var(--color-white);
+        }
+        
+        .modal-message {
+            color: var(--color-text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .modal-form .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-form .form-row input {
+            flex: 1;
+        }
+        
+        .modal-form input,
+        .modal-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: var(--color-white);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-form input:focus,
+        .modal-form textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
+        }
+        
+        .modal-form input::placeholder,
+        .modal-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .modal-btn-primary {
+            flex: 1;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .modal-btn-primary:hover {
+            background: linear-gradient(135deg, #9333ea, #6d28d9);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.3);
+        }
+        
+        .modal-btn-secondary {
+            background: transparent;
+            color: var(--color-text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--color-primary);
+        }
+        
+        @media (max-width: 768px) {
+            .cta-modal-content {
+                padding: 1.5rem;
+                width: 95%;
+            }
+            
+            .modal-form .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .modal-buttons {
+                flex-direction: column;
+            }
+        }
+    `;
+    document.head.appendChild(modalStyle);
+    
+    return modal;
+}
+
+function closeCTAModal() {
+    const modal = document.getElementById('ctaModal');
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+}
+
+function submitCTAForm(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const submitButton = form.querySelector('.modal-btn-primary');
+    const originalText = submitButton.innerHTML;
+    
+    // Show loading state
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+    submitButton.disabled = true;
+    
+    // Simulate form submission
+    setTimeout(() => {
+        submitButton.innerHTML = '<i class="fas fa-check"></i> Success!';
+        submitButton.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        
+        setTimeout(() => {
+            showToast('Thank you! We\'ll contact you soon.', 'success');
+            closeCTAModal();
+            
+            // Reset form
+            form.reset();
+            submitButton.innerHTML = originalText;
+            submitButton.disabled = false;
+            submitButton.style.background = 'linear-gradient(135deg, var(--color-primary), var(--color-primary-dark))';
+        }, 1500);
+    }, 2000);
+}
