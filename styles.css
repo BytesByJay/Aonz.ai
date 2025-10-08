@@ -180,9 +180,9 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--space-lg);
+    width: 100%;
+    margin: 0;
+    padding: 0 var(--space-xl);
 }
 
 .logo {
@@ -377,6 +377,7 @@ p {
 /* Ultra-Modern Hero Section */
 .hero {
     min-height: 100vh;
+    width: 100vw;
     background: 
         radial-gradient(ellipse 80% 60% at 20% 30%, rgba(168, 85, 247, 0.12) 0%, transparent 60%),
         radial-gradient(ellipse 60% 80% at 80% 70%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
@@ -388,7 +389,9 @@ p {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    padding: 120px 0 60px;
+    padding: 120px var(--space-xl) 60px;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
 }
 
 /* Dynamic Background Elements */
@@ -497,28 +500,46 @@ p {
 .orb-1 {
     top: 10%;
     left: 5%;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, transparent 70%);
     animation-delay: 0s;
 }
 
 .orb-2 {
     top: 50%;
-    right: 10%;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+    right: 5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.18) 0%, transparent 70%);
     animation-delay: -8s;
 }
 
 .orb-3 {
     bottom: 10%;
-    left: 30%;
-    width: 250px;
-    height: 250px;
-    background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+    left: 25%;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
     animation-delay: -16s;
+}
+
+.orb-4 {
+    top: 20%;
+    right: 40%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 60%);
+    animation-delay: -24s;
+}
+
+.orb-5 {
+    bottom: 30%;
+    left: 10%;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 65%);
+    animation-delay: -32s;
 }
 
 /* Particle System */
@@ -591,14 +612,14 @@ p {
 
 /* Hero Container - Modern Layout */
 .hero-container {
-    max-width: 1400px;
     width: 100%;
-    margin: 0 auto;
-    padding: 0 var(--space-xl);
+    max-width: none;
+    margin: 0;
+    padding: 0 var(--space-2xl);
     position: relative;
     z-index: 5;
     display: grid;
-    grid-template-columns: 1fr 0.8fr;
+    grid-template-columns: 1fr 1fr;
     gap: var(--space-3xl);
     align-items: center;
     min-height: calc(100vh - 180px);
@@ -609,7 +630,18 @@ p {
     display: flex;
     flex-direction: column;
     gap: var(--space-xl);
-    max-width: 600px;
+    max-width: 650px;
+    padding-left: var(--space-lg);
+}
+
+/* Visual Section */
+.hero-visual-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: var(--space-lg);
+    min-height: 500px;
 }
 
 /* Hero Tag */
@@ -1692,31 +1724,38 @@ section {
 /* Responsive Design */
 @media (max-width: 1024px) {
     .hero {
-        padding: 80px 0 40px;
+        padding: 80px 0 0;
         min-height: 100vh;
         display: flex;
-        align-items: center;
+        justify-content: space-between;
+        align-items: stretch;
+        width: 100vw;
     }
     
     .hero-container {
         grid-template-columns: 1fr;
         gap: var(--space-md);
         text-align: center;
-        min-height: auto;
-        padding: 0 var(--space-md);
+        padding: var(--space-lg);
         width: 100%;
+        max-width: none;
+        flex: 1;
     }
     
     .hero-main-content {
         max-width: none;
         order: 1;
         gap: var(--space-sm);
+        padding-left: 0;
     }
     
     .hero-visual-section {
         order: 2;
-        min-height: 200px;
+        min-height: 250px;
         margin-top: var(--space-md);
+        padding-right: 0;
+        justify-content: center;
+        gap: var(--space-lg);
     }
     
     /* Make title more impactful on mobile */
@@ -1789,6 +1828,10 @@ section {
 }
 
 @media (max-width: 768px) {
+    .nav-container {
+        padding: 0 var(--space-lg);
+    }
+    
     .nav-menu {
         position: fixed;
         top: 100%;
@@ -1805,6 +1848,9 @@ section {
         transition: all 0.3s ease;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         border-top: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
     }
     
     .nav-menu.active {
@@ -1853,7 +1899,10 @@ section {
     
     /* Hero Mobile Styles */
     .hero {
-        padding: 100px 0 40px;
+        padding: 100px var(--space-md) 40px;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
     }
     
     /* Hide complex background elements on mobile for better performance */
@@ -1867,8 +1916,10 @@ section {
     }
     
     .hero-container {
-        padding: 0 var(--space-md);
+        padding: 0 var(--space-lg);
         overflow-x: hidden; /* Prevent horizontal overflow */
+        width: 100%;
+        max-width: none;
     }
     
     .hero-title {
@@ -2101,6 +2152,18 @@ section {
     /* Hide hero-bottom completely on mobile */
     .hero-bottom {
         display: none !important;
+    }
+    
+    .hero-quick-access {
+        margin-top: var(--space-md);
+        padding: var(--space-md);
+        text-align: center;
+    }
+    
+    .quick-access {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--space-xs);
     }
     
     .services-grid,
@@ -2699,6 +2762,16 @@ section {
     text-align: center;
 }
 
+/* Hero Quick Access Section */
+.hero-quick-access {
+    margin-top: var(--space-xl);
+    padding: var(--space-lg);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+}
+
 /* Hero Bottom Section */
 .hero-bottom {
     position: absolute;
@@ -2706,11 +2779,8 @@ section {
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    padding: 0 var(--space-xl);
     z-index: 5;
 }
 
