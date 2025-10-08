@@ -6,9 +6,16 @@
     <title>Corporate Solutions | Digital Transformation & Innovation</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
+    <!-- Loading Animation -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader"></div>
+    </div>
+
     <!-- Navigation Header -->
     <header class="header">
         <nav class="navbar">
@@ -75,11 +82,11 @@
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1 class="hero-title">
+                    <h1 class="hero-title" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
                         TOGETHER WE
                         <span class="hero-accent">REIN<i class="fas fa-play"></i>ENTED</span>
                     </h1>
-                    <div class="hero-subtitle">
+                    <div class="hero-subtitle" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
                         <h2>Scaling AI</h2>
                         <p>We help clients prioritize business strategy, technology readiness and organizational readiness to get to value faster.</p>
                         <a href="#services" class="cta-link">See what we do <i class="fas fa-arrow-right"></i></a>
@@ -88,20 +95,20 @@
             </div>
             
             <!-- Hero Cards -->
-            <div class="hero-cards">
-                <div class="hero-card gradient-purple">
+            <div class="hero-cards" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="600">
+                <div class="hero-card gradient-purple" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800">
                     <span class="card-type">RESEARCH REPORT</span>
                     <h3>AI and your operating model: Radically new ways of working</h3>
                 </div>
-                <div class="hero-card gradient-dark">
+                <div class="hero-card gradient-dark" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="900">
                     <span class="card-type">RESEARCH REPORT</span>
                     <h3>4 critical actions to take now to strengthen your cyber defenses</h3>
                 </div>
-                <div class="hero-card gradient-light">
+                <div class="hero-card gradient-light" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1000">
                     <span class="card-type">CASE STUDY</span>
                     <h3>Belden leaps forward to the edge of platforms</h3>
                 </div>
-                <div class="hero-card gradient-colorful">
+                <div class="hero-card gradient-colorful" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1100">
                     <span class="card-type">RESEARCH REPORT</span>
                     <h3>Trying to scale AI? You're going to need to think big. And act bigger.</h3>
                 </div>
@@ -112,13 +119,13 @@
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="800">
                 <h2>Our Services</h2>
                 <p>Comprehensive digital transformation solutions powered by cutting-edge technology</p>
             </div>
             
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
                     <div class="service-icon">
                         <i class="fas fa-brain"></i>
                     </div>
@@ -127,7 +134,7 @@
                     <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
                     <div class="service-icon">
                         <i class="fas fa-robot"></i>
                     </div>
@@ -136,7 +143,7 @@
                     <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
                     <div class="service-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
@@ -145,7 +152,7 @@
                     <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
                     <div class="service-icon">
                         <i class="fas fa-file-alt"></i>
                     </div>
@@ -154,7 +161,7 @@
                     <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="500">
                     <div class="service-icon">
                         <i class="fas fa-comments"></i>
                     </div>
@@ -163,7 +170,7 @@
                     <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="600">
                     <div class="service-icon">
                         <i class="fas fa-users"></i>
                     </div>
@@ -178,13 +185,13 @@
     <!-- Products Section -->
     <section id="products" class="products">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="800">
                 <h2>Our Products Platform</h2>
                 <p>Innovative platform solutions designed to accelerate your digital journey</p>
             </div>
             
             <div class="products-grid">
-                <div class="product-card featured">
+                <div class="product-card featured" data-aos="fade-right" data-aos-duration="1000">
                     <div class="product-content">
                         <h3>Video Discussion Platform</h3>
                         <p>Interactive video conferencing platform with AI-powered features for VoLTE/VoD/RTSP/Chat and Enhanced Customer Service.</p>
@@ -422,5 +429,15 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out-cubic',
+            once: true,
+            offset: 100,
+            delay: 100
+        });
+    </script>
 </body>
 </html>

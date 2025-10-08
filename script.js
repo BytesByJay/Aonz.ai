@@ -1,6 +1,7 @@
 // DOM Content Loaded Event
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
+    initPageLoader();
     initMobileMenu();
     initSmoothScrolling();
     initFormHandling();
@@ -8,7 +9,31 @@ document.addEventListener('DOMContentLoaded', function() {
     initDropdownMenus();
     initCTAButtons();
     initScrollToTop();
+    initModernAnimations();
 });
+
+// Page Loader
+function initPageLoader() {
+    const loader = document.getElementById('pageLoader');
+    
+    // Hide loader after page is fully loaded
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            loader.classList.add('fade-out');
+            document.body.style.overflow = 'auto';
+            
+            // Remove loader from DOM after animation
+            setTimeout(() => {
+                if (loader && loader.parentNode) {
+                    loader.parentNode.removeChild(loader);
+                }
+            }, 600);
+        }, 1000); // Minimum loading time for effect
+    });
+    
+    // Prevent body scroll while loading
+    document.body.style.overflow = 'hidden';
+}
 
 // Mobile Menu Toggle Functionality
 function initMobileMenu() {
@@ -399,3 +424,203 @@ const throttledScrollHandler = throttle(function() {
 
 // Replace the scroll event listener in initScrollEffects
 window.addEventListener('scroll', throttledScrollHandler);
+
+// Modern Animations and Effects
+function initModernAnimations() {
+    // Parallax effect for hero section
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        window.addEventListener('scroll', throttle(() => {
+            const scrolled = window.pageYOffset;
+            const parallax = scrolled * 0.5;
+            hero.style.transform = `translateY(${parallax}px)`;
+        }, 16));
+    }
+    
+    // Enhanced button hover effects
+    const buttons = document.querySelectorAll('.cta-button, .service-link, .product-cta');
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const ripple = document.createElement('span');
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                left: ${x}px;
+                top: ${y}px;
+                width: 10px;
+                height: 10px;
+                margin-left: -5px;
+                margin-top: -5px;
+                pointer-events: none;
+            `;
+            
+            this.appendChild(ripple);
+            setTimeout(() => {
+                if (ripple.parentNode) {
+                    ripple.parentNode.removeChild(ripple);
+                }
+            }, 600);
+        });
+    });
+    
+    // Add ripple animation to CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Magnetic effect for cards
+    const cards = document.querySelectorAll('.service-card, .product-card, .industry-card');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            const tiltX = (y / rect.height) * 10;
+            const tiltY = (x / rect.width) * -10;
+            
+            this.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        });
+    });
+    
+    // Smooth reveal animation for sections
+    const sections = document.querySelectorAll('section');
+    const revealOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+            }
+        });
+    }, revealOptions);
+    
+    sections.forEach(section => {
+        section.style.opacity = '0.3';
+        section.style.transform = 'translateY(50px)';
+        section.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+        revealObserver.observe(section);
+    });
+    
+    // Add revealed class styling
+    const revealStyle = document.createElement('style');
+    revealStyle.textContent = `
+        section.revealed {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+    `;
+    document.head.appendChild(revealStyle);
+    
+    // Text typing effect for hero title
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+        const text = heroTitle.textContent;
+        heroTitle.innerHTML = '';
+        
+        setTimeout(() => {
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    heroTitle.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            };
+            typeWriter();
+        }, 1500);
+    }
+}
+
+// Enhanced cursor effects
+document.addEventListener('DOMContentLoaded', function() {
+    // Create custom cursor
+    const cursor = document.createElement('div');
+    cursor.classList.add('custom-cursor');
+    document.body.appendChild(cursor);
+    
+    const cursorFollower = document.createElement('div');
+    cursorFollower.classList.add('cursor-follower');
+    document.body.appendChild(cursorFollower);
+    
+    // Add cursor styles
+    const cursorStyle = document.createElement('style');
+    cursorStyle.textContent = `
+        .custom-cursor {
+            width: 10px;
+            height: 10px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+        
+        .cursor-follower {
+            width: 30px;
+            height: 30px;
+            border: 2px solid rgba(168, 85, 247, 0.3);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s ease;
+        }
+        
+        .custom-cursor.hover {
+            transform: scale(2);
+        }
+        
+        .cursor-follower.hover {
+            transform: scale(1.5);
+            border-color: var(--color-primary);
+        }
+    `;
+    document.head.appendChild(cursorStyle);
+    
+    // Mouse move event
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX - 5 + 'px';
+        cursor.style.top = e.clientY - 5 + 'px';
+        
+        cursorFollower.style.left = e.clientX - 15 + 'px';
+        cursorFollower.style.top = e.clientY - 15 + 'px';
+    });
+    
+    // Hover effects
+    const hoverElements = document.querySelectorAll('a, button, .service-card, .product-card');
+    hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.classList.add('hover');
+            cursorFollower.classList.add('hover');
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('hover');
+            cursorFollower.classList.remove('hover');
+        });
+    });
+});
