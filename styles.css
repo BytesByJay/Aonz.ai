@@ -1836,12 +1836,24 @@ section {
         padding: 100px 0 40px;
     }
     
+    /* Hide complex background elements on mobile for better performance */
+    .floating-shapes,
+    .particle-system {
+        display: none;
+    }
+    
+    .gradient-orbs {
+        opacity: 0.3; /* Reduce opacity instead of hiding completely */
+    }
+    
     .hero-container {
         padding: 0 var(--space-md);
+        overflow-x: hidden; /* Prevent horizontal overflow */
     }
     
     .hero-title {
-        font-size: clamp(2rem, 8vw, 3rem);
+        font-size: clamp(1.8rem, 7vw, 3rem);
+        word-break: break-word; /* Prevent text overflow */
     }
     
     .title-line-1 {
@@ -1874,16 +1886,32 @@ section {
     }
     
     .hero-stats {
-        gap: var(--space-lg);
+        gap: var(--space-md);
         flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .stat-item {
+        min-width: 80px;
     }
     
     .stat-number {
         font-size: 1.5rem;
     }
     
+    .hero-visual-section {
+        margin-top: var(--space-lg);
+        padding: 0 var(--space-md);
+        overflow: hidden; /* Contain the animations */
+    }
+    
     .hero-graphic {
-        height: 250px;
+        height: 200px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
     .tech-circle {
@@ -1900,14 +1928,19 @@ section {
         font-size: 1.5rem;
     }
     
+    /* Simplify orbits on mobile */
+    .orbit-rings {
+        transform: scale(0.6); /* Scale down more to fit properly */
+    }
+    
     .orbit-1 {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
     }
     
     .orbit-2 {
-        width: 140px;
-        height: 140px;
+        width: 130px;
+        height: 130px;
     }
     
     .orbit-3 {
@@ -1916,31 +1949,50 @@ section {
     }
     
     .orbit-item {
-        width: 30px;
-        height: 30px;
-        font-size: 0.8rem;
+        width: 25px;
+        height: 25px;
+        font-size: 0.7rem;
     }
     
     .hero-feature-cards {
+        display: flex;
         flex-direction: row;
-        overflow-x: auto;
-        padding: 0 var(--space-md);
-        gap: var(--space-sm);
+        justify-content: center;
+        gap: var(--space-xs);
+        margin-top: var(--space-md);
+        overflow: visible;
     }
     
     .feature-card {
-        min-width: 100px;
-        flex-shrink: 0;
+        min-width: 80px;
+        max-width: 90px;
+        padding: var(--space-xs);
+        font-size: 0.75rem;
     }
     
+    .card-icon {
+        font-size: 1.5rem;
+        margin-bottom: var(--space-xs);
+    }
+    
+    /* Keep hero-bottom visible on tablets */
     .hero-bottom {
+        position: relative;
+        bottom: auto;
+        transform: none;
+        margin-top: var(--space-lg);
         padding: 0 var(--space-md);
     }
     
     .quick-access {
         flex-wrap: wrap;
         justify-content: center;
-        gap: var(--space-sm);
+        gap: var(--space-xs);
+        font-size: 0.875rem;
+    }
+    
+    .scroll-indicator {
+        margin-top: var(--space-md);
     }
     
     .services-grid,
@@ -2011,6 +2063,24 @@ section {
     .industry-card,
     .highlight-item {
         padding: 2rem;
+    }
+    
+    /* Simplify layout on very small screens */
+    .hero-visual-section {
+        margin-top: var(--space-md);
+    }
+    
+    .hero-bottom {
+        display: none; /* Hide quick access on very small screens */
+    }
+    
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .hero-main-content {
+        order: 1;
     }
 }
 
@@ -2315,11 +2385,12 @@ section {
     justify-content: center;
 }
 
-.graphic-center {
-    position: relative;
-    width: 200px;
-    height: 200px;
-}
+    .graphic-center {
+        position: relative;
+        width: 160px;
+        height: 160px;
+        margin: 0 auto;
+    }
 
 .tech-circle {
     width: 120px;
