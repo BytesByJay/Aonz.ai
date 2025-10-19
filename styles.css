@@ -5,21 +5,21 @@
     --font-secondary: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-accent: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     
-    /* Colors */
-    --color-primary: #a855f7;
-    --color-primary-dark: #7c3aed;
-    --color-primary-light: #c084fc;
-    --color-secondary: #06b6d4;
-    --color-accent: #10b981;
+    /* Colors - Aonz.in Light Theme Palette */
+    --color-primary: #4d2469;
+    --color-primary-dark: #3b1d52;
+    --color-primary-light: #6d3a85;
+    --color-secondary: #1e40af;
+    --color-accent: #059669;
     --color-white: #ffffff;
     --color-black: #000000;
-    --color-gray-900: #0a0a0a;
-    --color-gray-800: #111111;
-    --color-gray-700: #1a1a1a;
-    --color-gray-600: #2a2a2a;
-    --color-text-primary: #ffffff;
-    --color-text-secondary: rgba(255, 255, 255, 0.9);
-    --color-text-muted: rgba(255, 255, 255, 0.7);
+    --color-gray-900: #ffffff;
+    --color-gray-800: #f8fafc;
+    --color-gray-700: #f1f5f9;
+    --color-gray-600: #e2e8f0;
+    --color-text-primary: #1a202c;
+    --color-text-secondary: #4a5568;
+    --color-text-muted: #718096;
     
     /* Spacing */
     --space-xs: 0.5rem;
@@ -41,7 +41,7 @@
     --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.2);
     --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.3);
     --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.4);
-    --shadow-glow: 0 0 30px rgba(168, 85, 247, 0.3);
+    --shadow-glow: 0 0 30px rgba(77, 36, 105, 0.3);
     
     /* Transitions */
     --transition-fast: 0.2s ease;
@@ -158,15 +158,15 @@ p {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(10, 10, 10, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     transition: all var(--transition-smooth);
     will-change: transform;
 }
 
 .header.scrolled {
-    background: rgba(10, 10, 10, 0.98);
+    background: rgba(255, 255, 255, 0.98);
     box-shadow: var(--shadow-lg);
     transform: translateY(0);
 }
@@ -198,7 +198,7 @@ p {
 }
 
 .logo-text {
-    color: var(--color-white);
+    color: var(--color-text-primary);
 }
 
 .logo-accent {
@@ -218,7 +218,7 @@ p {
 }
 
 .nav-link {
-    color: var(--color-text-primary);
+    color: var(--color-text-secondary);
     text-decoration: none;
     font-family: var(--font-primary);
     font-weight: 500;
@@ -379,10 +379,10 @@ p {
     min-height: 100vh;
     width: 100vw;
     background: 
-        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(168, 85, 247, 0.12) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 80% 70%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
-        radial-gradient(ellipse 100% 100% at 50% 100%, rgba(16, 185, 129, 0.04) 0%, transparent 60%),
-        linear-gradient(135deg, #050614 0%, #0a0a1a 25%, #1a0a2e 50%, #0f1419 75%, #050505 100%);
+        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(77, 36, 105, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 70%, rgba(30, 64, 175, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 100% 100% at 50% 100%, rgba(5, 150, 105, 0.03) 0%, transparent 60%),
+        linear-gradient(135deg, #ffffff 0%, #f8fafc 25%, #f1f5f9 50%, #e2e8f0 75%, #ffffff 100%);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -502,7 +502,7 @@ p {
     left: 5%;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(77, 36, 105, 0.25) 0%, transparent 70%);
     animation-delay: 0s;
 }
 
@@ -511,7 +511,7 @@ p {
     right: 5%;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(6, 182, 212, 0.18) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(30, 64, 175, 0.18) 0%, transparent 70%);
     animation-delay: -8s;
 }
 
@@ -520,7 +520,7 @@ p {
     left: 25%;
     width: 350px;
     height: 350px;
-    background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(5, 150, 105, 0.15) 0%, transparent 70%);
     animation-delay: -16s;
 }
 
@@ -1051,7 +1051,7 @@ section {
 }
 
 .section-header h2 {
-    color: #ffffff;
+    color: var(--color-text-primary);
     margin-bottom: 1rem;
 }
 
@@ -1064,7 +1064,7 @@ section {
 
 /* Services Section */
 .services {
-    background: #111111;
+    background: var(--color-gray-700);
 }
 
 .services-grid {
@@ -1075,11 +1075,11 @@ section {
 
 .service-card {
     background: 
-        linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 42, 42, 0.8) 100%),
-        radial-gradient(circle at top right, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%),
+        radial-gradient(circle at top right, rgba(77, 36, 105, 0.05) 0%, transparent 50%);
     padding: var(--space-xl);
     border-radius: var(--radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.06);
     backdrop-filter: blur(10px);
     transition: all var(--transition-smooth);
     text-align: center;
@@ -1160,7 +1160,7 @@ section {
 
 .service-card h3 {
     margin-bottom: 1rem;
-    color: #ffffff;
+    color: var(--color-text-primary);
 }
 
 .service-card p {
@@ -1185,7 +1185,7 @@ section {
 
 /* Products Section */
 .products {
-    background: #0a0a0a;
+    background: var(--color-gray-800);
 }
 
 .products-grid {
@@ -1845,7 +1845,7 @@ section {
         top: 100%;
         left: 0;
         right: 0;
-        background: rgba(0, 0, 0, 0.98);
+        background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(20px);
         flex-direction: column;
         padding: 2rem;
@@ -1855,7 +1855,7 @@ section {
         transform: translateY(-20px);
         transition: all 0.3s ease;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
         width: 100%;
         margin-left: 0;
         margin-right: 0;
