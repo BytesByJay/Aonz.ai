@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
         initCTAButtons();
         initScrollToTop();
         initModernAnimations();
-        initFloatingCTA();
     } catch (error) {
         console.error('Error initializing page functionality:', error);
     }
@@ -735,65 +734,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Floating CTA Functionality
-function initFloatingCTA() {
-    const floatingCTA = document.getElementById('floatingCTA');
-    const backdrop = document.getElementById('floatingCTABackdrop');
-    
-    if (!floatingCTA) return;
-    
-    // Check if user has already dismissed the CTA in this session
-    const hasDismissed = sessionStorage.getItem('floatingCTADismissed') === 'true';
-    
-    // If already dismissed, keep it hidden
-    if (hasDismissed) {
-        floatingCTA.classList.add('hide');
-        if (backdrop) backdrop.classList.remove('show');
-        return;
-    }
-    
-    // Show floating CTA after a delay (10 seconds after page load)
-    // This gives users time to explore the page before showing the CTA
-    setTimeout(() => {
-        // Double-check it hasn't been dismissed while waiting
-        if (!floatingCTA.classList.contains('hide')) {
-            floatingCTA.classList.add('show');
-            if (backdrop) backdrop.classList.add('show');
-        }
-    }, 10000); // Show after 10 seconds of visiting the website
-    
-    // Auto hide after some time if no interaction
-    setTimeout(() => {
-        if (floatingCTA.classList.contains('show')) {
-            floatingCTA.style.opacity = '0.8';
-            if (backdrop) backdrop.style.opacity = '0.5';
-        }
-    }, 25000); // Fade after 25 seconds
-    
-    // Close on backdrop click
-    if (backdrop) {
-        backdrop.addEventListener('click', closeFloatingCTA);
-    }
-}
-
-// Close floating CTA
-function closeFloatingCTA() {
-    const floatingCTA = document.getElementById('floatingCTA');
-    const backdrop = document.getElementById('floatingCTABackdrop');
-    
-    if (floatingCTA) {
-        floatingCTA.classList.remove('show');
-        floatingCTA.classList.add('hide');
-    }
-    
-    if (backdrop) {
-        backdrop.classList.remove('show');
-    }
-    
-    // Store dismissal in session storage so it doesn't show again this session
-    sessionStorage.setItem('floatingCTADismissed', 'true');
-}
-
 // CTA Button Functions
 function bookDemo() {
     // You can integrate with your booking system here
@@ -851,9 +791,6 @@ function showCTAModal(title, message) {
     // Show modal
     modal.classList.add('show');
     document.body.style.overflow = 'hidden';
-    
-    // Close floating CTA if it's open
-    closeFloatingCTA();
 }
 
 function createCTAModal() {
