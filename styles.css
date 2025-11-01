@@ -1905,6 +1905,20 @@ section {
         transform: translateY(0);
     }
     
+    .nav-item {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .nav-link {
+        width: 100%;
+        justify-content: space-between;
+        padding: var(--space-sm) 0;
+        font-size: 1rem;
+    }
+    
     .mobile-menu-toggle {
         display: flex;
     }
@@ -1934,13 +1948,46 @@ section {
     
     .dropdown-content {
         position: static;
-        opacity: 1;
-        visibility: visible;
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        overflow: hidden;
         transform: none;
         background: rgba(168, 85, 247, 0.1);
         border: none;
         box-shadow: none;
+        margin-top: 0;
+        margin-left: 0;
+        width: 100%;
+        padding: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.3s ease, margin-top 0.3s ease;
+    }
+    
+    .dropdown.active .dropdown-content {
+        opacity: 1;
+        visibility: visible;
+        max-height: 500px;
         margin-top: 0.5rem;
+        padding: 0.5rem 0;
+    }
+    
+    .dropdown-content a {
+        width: 100%;
+        padding: var(--space-sm) var(--space-md);
+        padding-left: var(--space-xl);
+        margin: 0;
+        text-align: left;
+        border-left: 3px solid transparent;
+        font-size: 0.9rem;
+    }
+    
+    .dropdown-content a:hover {
+        border-left-color: #a855f7;
+        padding-left: var(--space-xl);
+    }
+    
+    .dropdown.active .nav-link i {
+        transform: rotate(180deg);
     }
     
     /* Hero Mobile Styles */
