@@ -383,6 +383,11 @@ p {
     flex-direction: column;
     cursor: pointer;
     gap: 4px;
+    background: transparent;
+    border: none;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
 }
 
 .mobile-menu-toggle span {
