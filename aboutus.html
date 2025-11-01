@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>About Us - Aonz.AI | Our Mission, Vision & Team</title>
+    <meta name="title" content="About Us - Aonz.AI | Our Mission, Vision & Team">
+    <meta name="description" content="Learn about Aonz.AI, an Indian startup harnessing AI and ML to solve complex real-world problems across diverse industries. Meet our passionate team of experts.">
+    <meta name="keywords" content="Aonz AI, Indian startup, AI company, machine learning, artificial intelligence, AI experts, tech team">
+    <meta name="author" content="Aonz.AI">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.aonz.in/aboutus.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.aonz.in/aboutus.html">
+    <meta property="og:title" content="About Us - Aonz.AI">
+    <meta property="og:description" content="Learn about our mission to harness AI and ML to solve complex real-world problems across diverse industries.">
+    <meta property="og:image" content="https://www.aonz.in/images/aboutus-og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.aonz.in/aboutus.html">
+    <meta name="twitter:title" content="About Us - Aonz.AI">
+    <meta name="twitter:description" content="Learn about our mission to harness AI and ML to solve complex real-world problems.">
+    <meta name="twitter:image" content="https://www.aonz.in/images/aboutus-twitter-image.jpg">
+    
+    <!-- Performance: Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <style>
+        /* About Us Page Specific Styles */
+        .about-hero {
+            padding: calc(var(--space-3xl) + 80px) 0 var(--space-2xl);
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.05) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .about-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-hero h1 {
+            margin-bottom: var(--space-md);
+        }
+
+        .about-hero p {
+            max-width: 800px;
+            margin: 0 auto var(--space-md);
+            font-size: 1.25rem;
+            color: var(--color-text-secondary);
+        }
+
+        .vision-mission-section {
+            padding: var(--space-3xl) 0;
+            background: var(--color-gray-900);
+        }
+
+        .vision-mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-xl);
+        }
+
+        .vision-card, .mission-card {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-card::before, .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+        }
+
+        .vision-card:hover, .mission-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(168, 85, 247, 0.4);
+        }
+
+        .vision-card .icon, .mission-card .icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            font-size: 1.5rem;
+            color: var(--color-white);
+        }
+
+        .vision-card h2, .mission-card h2 {
+            margin-bottom: var(--space-sm);
+        }
+
+        .vision-card p, .mission-card p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: var(--space-3xl) 0;
+            background: var(--color-gray-800);
+        }
+
+        .team-section-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .team-section-header h2 {
+            margin-bottom: var(--space-sm);
+        }
+
+        .team-section-header p {
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .team-scroll-container {
+            position: relative;
+            padding: var(--space-lg) 0;
+        }
+
+        .team-scroll-wrapper {
+            display: flex;
+            gap: var(--space-lg);
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: var(--space-md) 0;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--color-primary) var(--color-gray-700);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .team-scroll-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .team-scroll-wrapper::-webkit-scrollbar-track {
+            background: var(--color-gray-700);
+            border-radius: var(--radius-md);
+        }
+
+        .team-scroll-wrapper::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            border-radius: var(--radius-md);
+        }
+
+        .team-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+            background: var(--color-primary-dark);
+        }
+
+        .team-card {
+            flex: 0 0 320px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            transform: scaleX(0);
+            transition: transform var(--transition-smooth);
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+
+        .team-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .team-card-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto var(--space-md);
+            overflow: hidden;
+            border: 3px solid rgba(168, 85, 247, 0.3);
+            position: relative;
+            background: var(--color-gray-700);
+        }
+
+        .team-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-smooth);
+        }
+
+        .team-card:hover .team-card-image img {
+            transform: scale(1.1);
+        }
+
+        .team-card-image .placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: var(--color-white);
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .team-card-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+            text-align: center;
+            color: var(--color-text-primary);
+        }
+
+        .team-card-role {
+            font-size: 1rem;
+            color: var(--color-primary-light);
+            text-align: center;
+            margin-bottom: var(--space-md);
+            font-weight: 500;
+        }
+
+        .team-card-details {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .team-card-social {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .team-card-social a {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(168, 85, 247, 0.1);
+            border-radius: 50%;
+            color: var(--color-primary-light);
+            transition: all var(--transition-fast);
+        }
+
+        .team-card-social a:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+            transform: translateY(-2px);
+        }
+
+        /* Scroll Buttons */
+        .team-scroll-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+
+        .scroll-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            color: var(--color-primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-size: 1.2rem;
+        }
+
+        .scroll-btn:hover {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: var(--color-white);
+            transform: scale(1.1);
+        }
+
+        .scroll-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .vision-mission-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-card {
+                flex: 0 0 280px;
+            }
+
+            .team-scroll-buttons {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-card {
+                flex: 0 0 260px;
+            }
+
+            .about-hero {
+                padding: calc(var(--space-2xl) + 80px) 0 var(--space-xl);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html" class="logo-link">
+                        <div class="logo">
+                            <span class="logo-text">Aonz</span>
+                            <span class="logo-accent">AI</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item dropdown">
+                        <a href="services.html" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="services.html#ai-consulting">AI Consulting & Solutioning</a>
+                            <a href="services.html#agentic-ai">Agentic AI</a>
+                            <a href="services.html#generative-ai">Generative AI</a>
+                            <a href="services.html#predictive-analysis">Predictive Analysis</a>
+                            <a href="services.html#virtual-agents">Virtual Agents & Chatbots</a>
+                            <a href="services.html#document-processing">Intelligent Document Processing</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="products.html" class="nav-link">Products <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="products.html#video-platform">Video Discussion Platform</a>
+                            <a href="products.html#asset-management">Asset Management Solution</a>
+                            <a href="products.html#learning-management">Learning Management System</a>
+                            <a href="products.html#feedback-management">Feedback Management Solution</a>
+                            <a href="products.html#crm-solutions">CRM Solutions</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="industries.html" class="nav-link">Industries We Empower</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="aboutus.html" class="nav-link">About Us</a>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="cta-button" onclick="bookDemo()" aria-label="Book a demo appointment">
+                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                        Book a Demo
+                    </button>
+                    <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- About Us Hero Section -->
+    <main id="main-content">
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-hero-content" data-aos="fade-up" data-aos-duration="800">
+                <h1>About Us</h1>
+                <p>We are an Indian startup driven by the mission to harness the power of Artificial Intelligence (AI) and Machine Learning (ML) to solve complex, real-world problems across diverse industries. Our team of experts is passionate about exploring cutting-edge advancements in AI and applying them to create tangible business and societal impact.</p>
+                <p>At the forefront of the AI revolution, we are committed to transforming possibilities into progress — empowering people, organizations, and industries to thrive in an intelligent future.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission Section -->
+    <section class="vision-mission-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-center">Our Vision & Mission</h2>
+            </div>
+            
+            <div class="vision-mission-grid">
+                <div class="vision-card" data-aos="fade-right" data-aos-duration="800">
+                    <div class="icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h2>Our Vision</h2>
+                    <p>To be a global leader in AI innovation, recognized for transforming businesses and societies through intelligent solutions. We envision a future where AI seamlessly integrates into every aspect of human endeavor, making technology accessible, ethical, and impactful for all.</p>
+                </div>
+                
+                <div class="mission-card" data-aos="fade-left" data-aos-duration="800">
+                    <div class="icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h2>Our Mission</h2>
+                    <p>To democratize AI and ML by delivering cutting-edge solutions that solve real-world challenges across industries. We are committed to empowering organizations with intelligent automation, predictive insights, and transformative technologies that drive sustainable growth and innovation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="team-section-header" data-aos="fade-up" data-aos-duration="800">
+                <h2>Meet Our Team</h2>
+                <p>Passionate experts dedicated to transforming the future with AI and ML</p>
+            </div>
+            
+            <div class="team-scroll-container" data-aos="fade-up" data-aos-duration="1000">
+                <div class="team-scroll-wrapper" id="teamScroll">
+                    <!-- Team Member 1 -->
+                    <div class="team-card">
+                        <div class="team-card-image">
+                            <div class="placeholder">JD</div>
+                            <!-- <img src="images/team/team-member-1.jpg" alt="John Doe"> -->
+                        </div>
+                        <h3 class="team-card-name">John Doe</h3>
+                        <p class="team-card-role">Chief Executive Officer</p>
+                        <p class="team-card-details">Visionary leader with 15+ years of experience in AI and technology innovation. Passionate about transforming businesses through intelligent solutions.</p>
+                        <div class="team-card-social">
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 2 -->
+                    <div class="team-card">
+                        <div class="team-card-image">
+                            <div class="placeholder">JS</div>
+                            <!-- <img src="images/team/team-member-2.jpg" alt="Jane Smith"> -->
+                        </div>
+                        <h3 class="team-card-name">Jane Smith</h3>
+                        <p class="team-card-role">Chief Technology Officer</p>
+                        <p class="team-card-details">AI researcher and technologist specializing in machine learning and deep learning. Expert in building scalable AI systems that deliver real business value.</p>
+                        <div class="team-card-social">
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 3 -->
+                    <div class="team-card">
+                        <div class="team-card-image">
+                            <div class="placeholder">MJ</div>
+                            <!-- <img src="images/team/team-member-3.jpg" alt="Michael Johnson"> -->
+                        </div>
+                        <h3 class="team-card-name">Michael Johnson</h3>
+                        <p class="team-card-role">Head of AI Research</p>
+                        <p class="team-card-details">Leading AI research initiatives with expertise in neural networks, natural language processing, and computer vision. Published researcher with multiple patents.</p>
+                        <div class="team-card-social">
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 4 -->
+                    <div class="team-card">
+                        <div class="team-card-image">
+                            <div class="placeholder">EW</div>
+                            <!-- <img src="images/team/team-member-4.jpg" alt="Emily Williams"> -->
+                        </div>
+                        <h3 class="team-card-name">Emily Williams</h3>
+                        <p class="team-card-role">Lead Data Scientist</p>
+                        <p class="team-card-details">Data science expert specializing in predictive analytics and business intelligence. Transforms complex data into actionable insights for strategic decision-making.</p>
+                        <div class="team-card-social">
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 5 -->
+                    <div class="team-card">
+                        <div class="team-card-image">
+                            <div class="placeholder">RB</div>
+                            <!-- <img src="images/team/team-member-5.jpg" alt="Robert Brown"> -->
+                        </div>
+                        <h3 class="team-card-name">Robert Brown</h3>
+                        <p class="team-card-role">Senior ML Engineer</p>
+                        <p class="team-card-details">Machine learning engineer with expertise in model deployment, MLOps, and production AI systems. Ensures our solutions are robust, scalable, and reliable.</p>
+                        <div class="team-card-social">
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 6 -->
+                    <div class="team-card">
+                        <div class="team-card-image">
+                            <div class="placeholder">SD</div>
+                            <!-- <img src="images/team/team-member-6.jpg" alt="Sarah Davis"> -->
+                        </div>
+                        <h3 class="team-card-name">Sarah Davis</h3>
+                        <p class="team-card-role">AI Solutions Architect</p>
+                        <p class="team-card-details">Solutions architect specializing in enterprise AI implementations. Designs scalable AI architectures that integrate seamlessly with existing business systems.</p>
+                        <div class="team-card-social">
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scroll Buttons -->
+                <div class="team-scroll-buttons">
+                    <button class="scroll-btn" id="teamScrollLeft" aria-label="Scroll left">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="scroll-btn" id="teamScrollRight" aria-label="Scroll right">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-text">Aonz</span>
+                        <span class="logo-accent">AI</span>
+                    </div>
+                    <p>Transforming businesses through innovative technology solutions and strategic consulting.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#ai-consulting">AI Consulting</a></li>
+                        <li><a href="services.html#agentic-ai">Agentic AI</a></li>
+                        <li><a href="services.html#generative-ai">Generative AI</a></li>
+                        <li><a href="services.html#predictive-analysis">Predictive Analysis</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="products.html#video-platform">Video Platform</a></li>
+                        <li><a href="products.html#asset-management">Asset Management</a></li>
+                        <li><a href="products.html#learning-management">Learning Management</a></li>
+                        <li><a href="products.html#crm-solutions">CRM Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="industries.html">Industries</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Aonz.AI. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out-cubic',
+            once: true,
+            offset: 100,
+            delay: 100
+        });
+
+        // Team Scroll Functionality
+        (function() {
+            const teamScroll = document.getElementById('teamScroll');
+            const scrollLeftBtn = document.getElementById('teamScrollLeft');
+            const scrollRightBtn = document.getElementById('teamScrollRight');
+            const cardWidth = 320 + 24; // card width + gap
+            const scrollAmount = cardWidth * 2; // scroll 2 cards at a time
+
+            function updateScrollButtons() {
+                const maxScroll = teamScroll.scrollWidth - teamScroll.clientWidth;
+                scrollLeftBtn.disabled = teamScroll.scrollLeft <= 0;
+                scrollRightBtn.disabled = teamScroll.scrollLeft >= maxScroll - 10;
+            }
+
+            scrollLeftBtn.addEventListener('click', () => {
+                teamScroll.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            });
+
+            scrollRightBtn.addEventListener('click', () => {
+                teamScroll.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            });
+
+            teamScroll.addEventListener('scroll', updateScrollButtons);
+            window.addEventListener('resize', updateScrollButtons);
+            
+            // Initial check
+            updateScrollButtons();
+        })();
+    </script>
+</body>
+</html>
+
