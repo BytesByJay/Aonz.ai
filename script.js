@@ -6,7 +6,7 @@ const CONFIG = {
     TOAST_FADE_OUT: 300,
     THROTTLE_DELAY: 16, // 60fps
     SCROLL_THRESHOLD: 50,
-    FLOATING_CTA_DELAY: 1500,
+    FLOATING_CTA_DELAY: 10000, // 10 seconds delay after page load
     FLOATING_CTA_FADE_TIME: 25000
 };
 
@@ -738,39 +738,60 @@ document.addEventListener('DOMContentLoaded', function() {
 // Floating CTA Functionality
 function initFloatingCTA() {
     const floatingCTA = document.getElementById('floatingCTA');
-    let hasShown = false;
+    const backdrop = document.getElementById('floatingCTABackdrop');
     
     if (!floatingCTA) return;
     
-    // Show floating CTA after scrolling down a bit
-    const handleScroll = throttle(() => {
-        const scrolled = window.scrollY > window.innerHeight * 0.6;
-        
-        if (scrolled && !hasShown && !floatingCTA.classList.contains('hide')) {
-            setTimeout(() => {
-                floatingCTA.classList.add('show');
-                hasShown = true;
-            }, 1500); // Show after 1.5 seconds of being in scroll position
-        }
-    }, 100);
+    // Check if user has already dismissed the CTA in this session
+    const hasDismissed = sessionStorage.getItem('floatingCTADismissed') === 'true';
     
-    window.addEventListener('scroll', handleScroll);
+    // If already dismissed, keep it hidden
+    if (hasDismissed) {
+        floatingCTA.classList.add('hide');
+        if (backdrop) backdrop.classList.remove('show');
+        return;
+    }
+    
+    // Show floating CTA after a delay (10 seconds after page load)
+    // This gives users time to explore the page before showing the CTA
+    setTimeout(() => {
+        // Double-check it hasn't been dismissed while waiting
+        if (!floatingCTA.classList.contains('hide')) {
+            floatingCTA.classList.add('show');
+            if (backdrop) backdrop.classList.add('show');
+        }
+    }, 10000); // Show after 10 seconds of visiting the website
     
     // Auto hide after some time if no interaction
     setTimeout(() => {
         if (floatingCTA.classList.contains('show')) {
             floatingCTA.style.opacity = '0.8';
+            if (backdrop) backdrop.style.opacity = '0.5';
         }
     }, 25000); // Fade after 25 seconds
+    
+    // Close on backdrop click
+    if (backdrop) {
+        backdrop.addEventListener('click', closeFloatingCTA);
+    }
 }
 
 // Close floating CTA
 function closeFloatingCTA() {
     const floatingCTA = document.getElementById('floatingCTA');
+    const backdrop = document.getElementById('floatingCTABackdrop');
+    
     if (floatingCTA) {
         floatingCTA.classList.remove('show');
         floatingCTA.classList.add('hide');
     }
+    
+    if (backdrop) {
+        backdrop.classList.remove('show');
+    }
+    
+    // Store dismissal in session storage so it doesn't show again this session
+    sessionStorage.setItem('floatingCTADismissed', 'true');
 }
 
 // CTA Button Functions
