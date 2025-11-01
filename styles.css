@@ -1927,10 +1927,7 @@ section {
     }
     
     .cta-button {
-        padding: var(--space-xs) var(--space-md);
-        font-size: 0.875rem;
-        order: -1;
-        margin-right: var(--space-sm);
+        display: none;
     }
     
     .nav-actions {
