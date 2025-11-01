@@ -727,6 +727,7 @@ p {
     letter-spacing: 0.2em;
     opacity: 0.8;
     margin-bottom: -0.1em;
+    white-space: nowrap;
 }
 
 .title-line-2 {
@@ -736,6 +737,7 @@ p {
     display: flex;
     align-items: center;
     gap: 0.1em;
+    white-space: nowrap;
 }
 
 .title-line-3 {
@@ -749,6 +751,7 @@ p {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    white-space: nowrap;
 }
 
 .title-rein {
@@ -756,6 +759,7 @@ p {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    white-space: nowrap;
 }
 
 .title-play {
@@ -788,6 +792,7 @@ p {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    white-space: nowrap;
 }
 
 @keyframes title-shine {
@@ -1785,9 +1790,12 @@ section {
     
     /* Make title more impactful on mobile */
     .hero-title {
-        font-size: clamp(2.2rem, 9vw, 4rem);
+        font-size: clamp(4.5rem, 14vw, 6.5rem);
         line-height: 0.85;
-        margin-bottom: var(--space-sm);
+        margin-bottom: var(--space-lg);
+        padding-top: var(--space-xl);
+        padding-bottom: var(--space-xl);
+        min-height: 250px;
     }
     
     .hero-subtitle {
@@ -1959,16 +1967,27 @@ section {
     }
     
     .hero-title {
-        font-size: clamp(1.8rem, 7vw, 3rem);
+        font-size: clamp(3.8rem, 13vw, 6.5rem);
         word-break: break-word; /* Prevent text overflow */
+        padding-top: var(--space-2xl);
+        padding-bottom: var(--space-2xl);
+        margin-bottom: var(--space-xl);
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     
     .title-line-1 {
-        font-size: 0.6em;
+        font-size: 0.65em;
+    }
+    
+    .title-line-2 {
+        font-size: 1.1em;
     }
     
     .title-line-3 {
-        font-size: 0.7em;
+        font-size: 0.85em;
     }
     
     /* Make hero tag more prominent on mobile */
@@ -2298,7 +2317,10 @@ section {
     }
     
     .hero-title {
-        font-size: 2rem;
+        font-size: clamp(3.2rem, 11vw, 5rem);
+        padding-top: var(--space-2xl);
+        padding-bottom: var(--space-2xl);
+        min-height: 280px;
     }
     
     h2 {
