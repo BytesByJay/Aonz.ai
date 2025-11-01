@@ -2347,6 +2347,56 @@ section {
         grid-template-columns: 1fr;
     }
     
+    /* Mobile optimization for featured product card */
+    .product-card.featured {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .product-card.featured h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .product-card.featured p {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+    }
+    
+    .product-features {
+        margin-bottom: 1.25rem;
+        gap: 0.4rem;
+    }
+    
+    .feature-tag {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .product-benefits {
+        margin-bottom: 1rem;
+    }
+    
+    .benefit-item {
+        font-size: 0.85rem;
+    }
+    
+    .product-visual {
+        flex: 0 0 auto;
+    }
+    
+    .video-preview {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+    }
+    
+    .product-cta {
+        padding: 0.6rem 1.25rem;
+        font-size: 0.9rem;
+    }
+    
     .about-highlights {
         grid-template-columns: 1fr;
     }
@@ -2501,6 +2551,57 @@ section {
     
     .hero-main-content {
         order: 1;
+    }
+    
+    /* Extra compact styles for featured product card on very small mobile */
+    .product-card.featured {
+        padding: 1.25rem;
+        gap: 1rem;
+    }
+    
+    .product-card.featured h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .product-card.featured p {
+        font-size: 0.875rem;
+        margin-bottom: 0.875rem;
+        line-height: 1.4;
+    }
+    
+    .product-features {
+        margin-bottom: 1rem;
+        gap: 0.35rem;
+    }
+    
+    .feature-tag {
+        padding: 0.35rem 0.7rem;
+        font-size: 0.75rem;
+    }
+    
+    .product-benefits {
+        margin-bottom: 0.875rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    
+    .benefit-item {
+        font-size: 0.8rem;
+    }
+    
+    .video-preview {
+        width: 60px;
+        height: 60px;
+        font-size: 1.75rem;
+    }
+    
+    .product-cta {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        width: 100%;
+        justify-content: center;
     }
 }
 
