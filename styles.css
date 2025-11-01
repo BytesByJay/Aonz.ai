@@ -1935,6 +1935,8 @@ section {
         margin-left: 0;
         margin-right: 0;
         min-height: 100vh;
+        align-items: center;
+        justify-content: center;
     }
     
     /* Hide complex background elements on mobile for better performance */
@@ -2183,15 +2185,40 @@ section {
         text-overflow: ellipsis;
     }
     
-    /* Hide hero-bottom completely on mobile */
-    .hero-bottom {
+    /* Hide feature cards and quick access on mobile */
+    .hero-feature-cards {
         display: none !important;
     }
     
     .hero-quick-access {
-        margin-top: var(--space-md);
-        padding: var(--space-md);
-        text-align: center;
+        display: none !important;
+    }
+    
+    /* Center scroll indicator on mobile */
+    .hero-bottom {
+        position: relative !important;
+        width: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin-top: var(--space-xl) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding: 0 !important;
+        text-align: center !important;
+        float: none !important;
+    }
+    
+    .scroll-indicator {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: auto !important;
+        margin: 0 auto !important;
+        text-align: center !important;
     }
     
     .quick-access {
@@ -2291,10 +2318,6 @@ section {
     /* Simplify layout on very small screens */
     .hero-visual-section {
         margin-top: var(--space-md);
-    }
-    
-    .hero-bottom {
-        display: none; /* Hide quick access on very small screens */
     }
     
     /* Extra compact feature cards on very small screens */
