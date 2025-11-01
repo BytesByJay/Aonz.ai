@@ -1,0 +1,36 @@
+{
+  "name": "aonz-ai-website",
+  "version": "1.0.0",
+  "description": "Aonz.AI - Digital Transformation Leaders Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "build": "npm run minify-css && npm run minify-js",
+    "minify-css": "npx csso styles.css -o dist/styles.min.css",
+    "minify-js": "npx terser script.js -o dist/script.min.js --compress --mangle",
+    "lint:css": "npx stylelint styles.css",
+    "lint:js": "npx eslint script.js",
+    "format": "npx prettier --write \"**/*.{html,css,js}\"",
+    "test": "npm run lint:css && npm run lint:js"
+  },
+  "keywords": [
+    "ai",
+    "consulting",
+    "digital-transformation",
+    "website"
+  ],
+  "author": "Aonz.AI",
+  "license": "MIT",
+  "devDependencies": {
+    "csso-cli": "^4.0.3",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "serve": "^14.2.3",
+    "stylelint": "^16.2.1",
+    "terser": "^5.29.1"
+  },
+  "dependencies": {
+    "aos": "^2.3.4"
+  }
+}
+

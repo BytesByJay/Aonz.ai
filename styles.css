@@ -51,6 +51,25 @@
     --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Skip to Content Link (Accessibility) */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-primary);
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 10000;
+    font-weight: 600;
+    border-radius: 0 0 4px 0;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -3449,4 +3468,26 @@ section {
 @keyframes scroll-bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(10px); }
+}
+
+/* Reduced Motion Support (Accessibility) */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .particle,
+    .floating-shapes,
+    .gradient-orbs {
+        display: none !important;
+    }
+    
+    .orbit-rings {
+        animation: none !important;
+    }
 }
