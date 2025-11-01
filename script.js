@@ -1,54 +1,99 @@
+// Configuration Constants
+const CONFIG = {
+    LOADER_DURATION: 1000,
+    LOADER_FADE_OUT: 600,
+    TOAST_DISPLAY_TIME: 3000,
+    TOAST_FADE_OUT: 300,
+    THROTTLE_DELAY: 16, // 60fps
+    SCROLL_THRESHOLD: 50,
+    FLOATING_CTA_DELAY: 1500,
+    FLOATING_CTA_FADE_TIME: 25000
+};
+
 // DOM Content Loaded Event
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
-    initPageLoader();
-    initMobileMenu();
-    initSmoothScrolling();
-    initFormHandling();
-    initScrollEffects();
-    initDropdownMenus();
-    initCTAButtons();
-    initScrollToTop();
-    initModernAnimations();
-    initFloatingCTA();
+    try {
+        // Initialize all functionality
+        initPageLoader();
+        initMobileMenu();
+        initSmoothScrolling();
+        initFormHandling();
+        initScrollEffects();
+        initDropdownMenus();
+        initCTAButtons();
+        initScrollToTop();
+        initModernAnimations();
+        initFloatingCTA();
+    } catch (error) {
+        console.error('Error initializing page functionality:', error);
+    }
 });
 
-// Page Loader
+/**
+ * Initializes the page loader animation
+ * Hides loader after page is fully loaded with fade-out animation
+ * @returns {void}
+ */
 function initPageLoader() {
-    const loader = document.getElementById('pageLoader');
-    
-    // Hide loader after page is fully loaded
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            loader.classList.add('fade-out');
-            document.body.style.overflow = 'auto';
-            
-            // Remove loader from DOM after animation
-            setTimeout(() => {
-                if (loader && loader.parentNode) {
-                    loader.parentNode.removeChild(loader);
-                }
-            }, 600);
-        }, 1000); // Minimum loading time for effect
-    });
-    
-    // Allow body scroll - loader disabled
-    // document.body.style.overflow = 'hidden';
+    try {
+        const loader = document.getElementById('pageLoader');
+        
+        if (!loader) {
+            console.warn('Page loader element not found');
+            return;
+        }
+        
+        // Hide loader after page is fully loaded
+        window.addEventListener('load', () => {
+            try {
+                setTimeout(() => {
+                    loader.classList.add('fade-out');
+                    document.body.style.overflow = 'auto';
+                    
+                    // Remove loader from DOM after animation
+                    setTimeout(() => {
+                        if (loader && loader.parentNode) {
+                            loader.parentNode.removeChild(loader);
+                        }
+                    }, CONFIG.LOADER_FADE_OUT);
+                }, CONFIG.LOADER_DURATION);
+            } catch (error) {
+                console.error('Error in page loader animation:', error);
+            }
+        });
+    } catch (error) {
+        console.error('Error initializing page loader:', error);
+    }
 }
 
-// Mobile Menu Toggle Functionality
+/**
+ * Initializes mobile menu toggle functionality
+ * Handles menu open/close and accessibility attributes
+ * @returns {void}
+ */
 function initMobileMenu() {
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (mobileMenuToggle && navMenu) {
+    try {
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (!mobileMenuToggle || !navMenu) {
+            console.warn('Mobile menu elements not found');
+            return;
+        }
         mobileMenuToggle.addEventListener('click', function() {
-            // Toggle active classes
-            mobileMenuToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            
-            // Prevent body scroll when menu is open
-            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+            try {
+                // Toggle active classes
+                const isActive = navMenu.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+                
+                // Update ARIA attributes for accessibility
+                mobileMenuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+                
+                // Prevent body scroll when menu is open
+                document.body.style.overflow = isActive ? 'hidden' : '';
+            } catch (error) {
+                console.error('Error toggling mobile menu:', error);
+            }
         });
 
         // Close menu when clicking on nav links
@@ -57,21 +102,29 @@ function initMobileMenu() {
             link.addEventListener('click', () => {
                 mobileMenuToggle.classList.remove('active');
                 navMenu.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
                 document.body.style.overflow = '';
             });
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            const isClickInsideNav = navMenu.contains(event.target);
-            const isClickOnToggle = mobileMenuToggle.contains(event.target);
-            
-            if (!isClickInsideNav && !isClickOnToggle && navMenu.classList.contains('active')) {
-                mobileMenuToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.style.overflow = '';
+            try {
+                const isClickInsideNav = navMenu.contains(event.target);
+                const isClickOnToggle = mobileMenuToggle.contains(event.target);
+                
+                if (!isClickInsideNav && !isClickOnToggle && navMenu.classList.contains('active')) {
+                    mobileMenuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+            } catch (error) {
+                console.error('Error handling menu click outside:', error);
             }
         });
+    } catch (error) {
+        console.error('Error initializing mobile menu:', error);
     }
 }
 
@@ -308,43 +361,59 @@ function initScrollToTop() {
     });
 }
 
-// Toast Notification Function
+/**
+ * Shows a toast notification to the user
+ * Creates and displays a temporary notification message
+ * @param {string} message - The message to display
+ * @param {string} [type='info'] - The toast type ('info', 'error', 'success')
+ * @returns {void}
+ */
 function showToast(message, type = 'info') {
-    const toast = document.createElement('div');
-    toast.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 1rem 2rem;
-        background: ${type === 'error' ? '#ef4444' : '#10b981'};
-        color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        z-index: 1001;
-        opacity: 0;
-        transform: translateX(100%);
-        transition: all 0.3s ease;
-        font-weight: 500;
-    `;
-    toast.textContent = message;
-    
-    document.body.appendChild(toast);
-    
-    // Show toast
-    requestAnimationFrame(() => {
-        toast.style.opacity = '1';
-        toast.style.transform = 'translateX(0)';
-    });
-    
-    // Hide toast after 3 seconds
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateX(100%)';
+    try {
+        const toast = document.createElement('div');
+        const bgColor = type === 'error' ? '#ef4444' : type === 'success' ? '#10b981' : '#3b82f6';
         
+        toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 2rem;
+            background: ${bgColor};
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        `;
+        toast.textContent = message;
+        toast.setAttribute('role', 'alert');
+        toast.setAttribute('aria-live', 'polite');
+        
+        document.body.appendChild(toast);
+        
+        // Show toast
+        requestAnimationFrame(() => {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateX(0)';
+        });
+        
+        // Hide toast after configured time
         setTimeout(() => {
-            document.body.removeChild(toast);
-        }, 300);
-    }, 3000);
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(100%)';
+            
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    document.body.removeChild(toast);
+                }
+            }, CONFIG.TOAST_FADE_OUT);
+        }, CONFIG.TOAST_DISPLAY_TIME);
+    } catch (error) {
+        console.error('Error showing toast:', error);
+    }
 }
 
 // Video Preview Click Handler

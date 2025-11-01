@@ -3,14 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aonz.Ai</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>Aonz.AI - Digital Transformation Leaders | AI Consulting & Solutions</title>
+    <meta name="title" content="Aonz.AI - Digital Transformation Leaders | AI Consulting & Solutions">
+    <meta name="description" content="Transform your business with AI-powered solutions. Aonz.AI is a leading AI consulting firm specializing in digital transformation, AI solutions, and enterprise software development. 500+ global clients, 99% success rate.">
+    <meta name="keywords" content="AI consulting, digital transformation, AI solutions, enterprise software, machine learning, predictive analytics, agentic AI, generative AI, document processing, virtual agents">
+    <meta name="author" content="Aonz.AI">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.aonz.in/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.aonz.in/">
+    <meta property="og:title" content="Aonz.AI - Digital Transformation Leaders">
+    <meta property="og:description" content="Transform your business with AI-powered solutions. Leading AI consulting firm with 500+ global clients and 99% success rate.">
+    <meta property="og:image" content="https://www.aonz.in/images/og-image.jpg">
+    <meta property="og:site_name" content="Aonz.AI">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.aonz.in/">
+    <meta name="twitter:title" content="Aonz.AI - Digital Transformation Leaders">
+    <meta name="twitter:description" content="Transform your business with AI-powered solutions. Leading AI consulting firm specializing in digital transformation.">
+    <meta name="twitter:image" content="https://www.aonz.in/images/twitter-image.jpg">
+    
+    <!-- Performance: Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Aonz.AI",
+      "url": "https://www.aonz.in",
+      "logo": "https://www.aonz.in/images/logo.png",
+      "description": "Leading AI consulting firm specializing in digital transformation, AI solutions, and enterprise software development",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-800-123-4567",
+        "contactType": "Customer Service",
+        "email": "contact@aonz.in",
+        "availableLanguage": ["English"]
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/aonzai",
+        "https://twitter.com/aonzai",
+        "https://www.facebook.com/aonzai"
+      ]
+    }
+    </script>
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Loading Animation -->
     <div class="page-loader" id="pageLoader">
         <div class="loader"></div>
@@ -21,7 +87,7 @@
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <a href="#home" class="logo-link" style="text-decoration: none;">
+                    <a href="#home" class="logo-link">
                         <div class="logo">
                             <span class="logo-text">Aonz</span>
                             <span class="logo-accent">AI</span>
@@ -66,21 +132,22 @@
                 </ul>
 
                 <div class="nav-actions">
-                    <button class="cta-button" onclick="bookDemo()">
-                        <i class="fas fa-calendar-alt"></i>
+                    <button class="cta-button" onclick="bookDemo()" aria-label="Book a demo appointment">
+                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
                         Book a Demo
                     </button>
-                    <div class="mobile-menu-toggle">
+                    <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
                         <span></span>
                         <span></span>
                         <span></span>
-                    </div>
+                    </button>
                 </div>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
+    <main id="main-content">
     <section id="home" class="hero">
         <!-- Dynamic Background Elements -->
         <div class="hero-bg-elements">
@@ -143,16 +210,16 @@
                 
                 <!-- CTA Section -->
                 <div class="hero-cta-section" data-aos="fade-up" data-aos-duration="800" data-aos-delay="800">
-                    <button class="hero-cta-primary" onclick="bookDemo()">
-                        <i class="fas fa-calendar-alt"></i>
+                    <button class="hero-cta-primary" onclick="bookDemo()" aria-label="Book a demo appointment">
+                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
                         <span>Book a Demo</span>
                     </button>
-                    <button class="hero-cta-secondary" onclick="scheduleCall()">
-                        <i class="fas fa-phone"></i>
+                    <button class="hero-cta-secondary" onclick="scheduleCall()" aria-label="Schedule a consultation call">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
                         <span>Schedule a Call</span>
                     </button>
-                    <button class="hero-cta-tertiary" onclick="getQuote()">
-                        <i class="fas fa-file-invoice"></i>
+                    <button class="hero-cta-tertiary" onclick="getQuote()" aria-label="Get a custom quote">
+                        <i class="fas fa-file-invoice" aria-hidden="true"></i>
                         <span>Get Quote</span>
                     </button>
                 </div>
@@ -542,7 +609,7 @@
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>contact@aonzai.com</span>
+                            <span>contact@aonz.in</span>
                         </div>
                     </div>
                 </div>
@@ -576,6 +643,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer Banner -->
     <section class="footer-banner">
@@ -584,12 +652,12 @@
                 <h2>Empower your enterprise with AI-driven intelligence, automation, and innovation.</h2>
                 <p>Partner with us to accelerate digital transformation — from strategy to execution.</p>
                 <div class="banner-cta">
-                    <button class="hero-cta-primary" onclick="bookDemo()">
-                        <i class="fas fa-rocket"></i>
+                    <button class="hero-cta-primary" onclick="bookDemo()" aria-label="Start your transformation by booking a demo">
+                        <i class="fas fa-rocket" aria-hidden="true"></i>
                         <span>Start Your Transformation</span>
                     </button>
-                    <button class="hero-cta-secondary" onclick="scheduleCall()">
-                        <i class="fas fa-phone"></i>
+                    <button class="hero-cta-secondary" onclick="scheduleCall()" aria-label="Talk to our experts">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
                         <span>Talk to Experts</span>
                     </button>
                 </div>
@@ -647,7 +715,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 CorpTech Solutions. All rights reserved.</p>
+                <p>&copy; 2024 Aonz.AI. All rights reserved.</p>
                 <div class="footer-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
@@ -665,17 +733,17 @@
                 <span class="floating-cta-subtitle">Talk to our experts today</span>
             </div>
             <div class="floating-cta-buttons">
-                <button class="floating-btn-primary" onclick="bookDemo()">
-                    <i class="fas fa-calendar-alt"></i>
+                <button class="floating-btn-primary" onclick="bookDemo()" aria-label="Book a demo appointment">
+                    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
                     Book Demo
                 </button>
-                <button class="floating-btn-secondary" onclick="scheduleCall()">
-                    <i class="fas fa-phone"></i>
+                <button class="floating-btn-secondary" onclick="scheduleCall()" aria-label="Schedule a call now">
+                    <i class="fas fa-phone" aria-hidden="true"></i>
                     Call Now
                 </button>
             </div>
-            <button class="floating-cta-close" onclick="closeFloatingCTA()">
-                <i class="fas fa-times"></i>
+            <button class="floating-cta-close" onclick="closeFloatingCTA()" aria-label="Close floating call-to-action">
+                <i class="fas fa-times" aria-hidden="true"></i>
             </button>
         </div>
     </div>
