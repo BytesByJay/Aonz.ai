@@ -532,8 +532,9 @@ function initParticleSystem() {
         particle.style.height = randomSize + 'px';
     });
 }
-    
-    // Enhanced button hover effects
+
+// Enhanced button hover effects
+document.addEventListener('DOMContentLoaded', function() {
     const buttons = document.querySelectorAll('.cta-button, .service-link, .product-cta');
     buttons.forEach(button => {
         button.addEventListener('mouseenter', function(e) {
@@ -628,26 +629,7 @@ function initParticleSystem() {
         }
     `;
     document.head.appendChild(revealStyle);
-    
-    // Text typing effect for hero title
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const text = heroTitle.textContent;
-        heroTitle.innerHTML = '';
-        
-        setTimeout(() => {
-            let i = 0;
-            const typeWriter = () => {
-                if (i < text.length) {
-                    heroTitle.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 100);
-                }
-            };
-            typeWriter();
-        }, 1500);
-    }
-}
+});
 
 // Enhanced cursor effects
 document.addEventListener('DOMContentLoaded', function() {
