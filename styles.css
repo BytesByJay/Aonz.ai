@@ -635,6 +635,7 @@ p {
     max-width: none;
     margin: 0;
     padding: 0 var(--space-2xl);
+    padding-right: var(--space-3xl);
     position: relative;
     z-index: 5;
     display: grid;
@@ -649,7 +650,7 @@ p {
     display: flex;
     flex-direction: column;
     gap: var(--space-xl);
-    max-width: 650px;
+    max-width: 750px;
     padding-left: var(--space-lg);
 }
 
@@ -724,9 +725,10 @@ p {
 .title-line-1 {
     font-size: 0.7em;
     font-weight: 600;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.18em;
     opacity: 0.8;
     margin-bottom: -0.1em;
+    margin-right: -0.05em;
     white-space: nowrap;
 }
 
