@@ -7,12 +7,24 @@ const CONFIG = {
     THROTTLE_DELAY: 16, // 60fps
     SCROLL_THRESHOLD: 50,
     FLOATING_CTA_DELAY: 10000, // 10 seconds delay after page load
-    FLOATING_CTA_FADE_TIME: 25000
+    FLOATING_CTA_FADE_TIME: 25000,
+    // EmailJS Configuration
+    // TODO: Replace these with your actual EmailJS credentials
+    // Get them from https://www.emailjs.com/
+    EMAILJS_SERVICE_ID: 'service_0wycke7', // e.g., 'service_abc123'
+    EMAILJS_TEMPLATE_ID: 'template_5xyb616', // e.g., 'template_xyz789'
+    EMAILJS_PUBLIC_KEY: '0IGXwgdA1wKH6MrfX', // e.g., 'abcdefghijklmnop'
+    CONTACT_EMAIL: 'test.dhananjayharidas@gmail.com' // Your contact email
 };
 
 // DOM Content Loaded Event
 document.addEventListener('DOMContentLoaded', function() {
     try {
+        // Initialize EmailJS
+        if (typeof emailjs !== 'undefined') {
+            emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);
+        }
+        
         // Initialize all functionality
         initPageLoader();
         initMobileMenu();
@@ -165,14 +177,31 @@ function initFormHandling() {
         contactForm.addEventListener('submit', function(event) {
             event.preventDefault();
             
-            // Get form data
-            const formData = new FormData(this);
-            const formObject = {};
+            // Get form data by placeholder or name attribute
+            const inputs = this.querySelectorAll('input, select, textarea');
+            let name = '';
+            let email = '';
+            let phone = '';
+            let service = '';
+            let message = '';
             
-            // Convert FormData to object
-            for (let [key, value] of formData.entries()) {
-                formObject[key] = value;
-            }
+            inputs.forEach(input => {
+                const placeholder = (input.placeholder || '').toLowerCase();
+                const inputType = input.type || '';
+                const tagName = input.tagName.toLowerCase();
+                
+                if (placeholder.includes('name') || input.name === 'name') {
+                    name = input.value.trim();
+                } else if (placeholder.includes('email') || inputType === 'email' || input.name === 'email') {
+                    email = input.value.trim();
+                } else if (placeholder.includes('phone') || inputType === 'tel' || input.name === 'phone') {
+                    phone = input.value.trim();
+                } else if (tagName === 'select' || placeholder.includes('service') || input.name === 'service') {
+                    service = input.value.trim();
+                } else if (tagName === 'textarea' || placeholder.includes('message') || input.name === 'message') {
+                    message = input.value.trim();
+                }
+            });
             
             // Validate required fields
             const requiredFields = this.querySelectorAll('[required]');
@@ -188,26 +217,22 @@ function initFormHandling() {
             });
             
             if (isValid) {
-                // Simulate form submission
                 const submitButton = this.querySelector('.form-submit');
                 const originalText = submitButton.textContent;
                 
                 submitButton.textContent = 'Sending...';
                 submitButton.disabled = true;
                 
-                // Simulate API call
-                setTimeout(() => {
-                    submitButton.textContent = 'Message Sent!';
-                    submitButton.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-                    
-                    // Reset form
-                    setTimeout(() => {
-                        this.reset();
-                        submitButton.textContent = originalText;
-                        submitButton.disabled = false;
-                        submitButton.style.background = 'linear-gradient(135deg, #a855f7, #7c3aed)';
-                    }, 2000);
-                }, 1000);
+                // Send email via EmailJS
+                sendContactEmail({
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    company: service, // Using service as company field
+                    message: message,
+                    subject: 'Contact Form Submission',
+                    type: 'Contact Form'
+                }, submitButton, originalText, this);
             } else {
                 // Show validation message
                 showToast('Please fill in all required fields', 'error');
@@ -1027,24 +1052,143 @@ function submitCTAForm(event) {
     const submitButton = form.querySelector('.modal-btn-primary');
     const originalText = submitButton.innerHTML;
     
+    // Get form data
+    const formData = new FormData(form);
+    const formObject = {};
+    for (let [key, value] of formData.entries()) {
+        formObject[key] = value;
+    }
+    
+    // Get modal title to determine request type
+    const modalTitle = document.querySelector('.modal-title')?.textContent || 'Contact Request';
+    
     // Show loading state
     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
     submitButton.disabled = true;
     
-    // Simulate form submission
-    setTimeout(() => {
-        submitButton.innerHTML = '<i class="fas fa-check"></i> Success!';
-        submitButton.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-        
-        setTimeout(() => {
-            showToast('Thank you! We\'ll contact you soon.', 'success');
-            closeCTAModal();
+    // Send email via EmailJS
+    sendContactEmail({
+        name: formObject.name || '',
+        email: formObject.email || '',
+        phone: formObject.phone || '',
+        company: formObject.company || '',
+        message: formObject.message || '',
+        subject: modalTitle,
+        type: modalTitle
+    }, submitButton, originalText, form, true);
+}
+
+/**
+ * Sends an email using EmailJS
+ * @param {Object} emailData - The email data to send
+ * @param {HTMLElement} submitButton - The submit button element
+ * @param {string} originalText - Original button text
+ * @param {HTMLElement} form - The form element
+ * @param {boolean} isModal - Whether this is from a modal form
+ */
+function sendContactEmail(emailData, submitButton, originalText, form, isModal = false) {
+    // Check if EmailJS is configured
+    if (CONFIG.EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID' || 
+        CONFIG.EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID' || 
+        CONFIG.EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+        // EmailJS not configured, use mailto as fallback
+        sendEmailViaMailto(emailData, submitButton, originalText, form, isModal);
+        return;
+    }
+    
+    // Prepare email template parameters
+    const templateParams = {
+        to_email: CONFIG.CONTACT_EMAIL,
+        from_name: emailData.name,
+        from_email: emailData.email,
+        phone: emailData.phone || 'Not provided',
+        company: emailData.company || 'Not provided',
+        message: emailData.message || 'No message provided',
+        subject: emailData.subject || 'Contact Request',
+        request_type: emailData.type || 'General Inquiry',
+        reply_to: emailData.email
+    };
+    
+    // Send email via EmailJS
+    if (typeof emailjs !== 'undefined') {
+        emailjs.send(
+            CONFIG.EMAILJS_SERVICE_ID,
+            CONFIG.EMAILJS_TEMPLATE_ID,
+            templateParams
+        )
+        .then(() => {
+            // Success
+            submitButton.innerHTML = '<i class="fas fa-check"></i> Success!';
+            submitButton.style.background = 'linear-gradient(135deg, #10b981, #059669)';
             
-            // Reset form
-            form.reset();
+            setTimeout(() => {
+                showToast('Thank you! We\'ll contact you soon.', 'success');
+                
+                if (isModal) {
+                    closeCTAModal();
+                }
+                
+                // Reset form
+                form.reset();
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+                submitButton.style.background = isModal 
+                    ? 'linear-gradient(135deg, var(--color-primary), var(--color-primary-dark))'
+                    : 'linear-gradient(135deg, #a855f7, #7c3aed)';
+            }, 1500);
+        })
+        .catch((error) => {
+            console.error('EmailJS Error:', error);
+            showToast('Failed to send message. Please try again or contact us directly.', 'error');
+            
+            // Reset button
             submitButton.innerHTML = originalText;
             submitButton.disabled = false;
-            submitButton.style.background = 'linear-gradient(135deg, var(--color-primary), var(--color-primary-dark))';
-        }, 1500);
-    }, 2000);
+            
+            // Fallback to mailto
+            sendEmailViaMailto(emailData, submitButton, originalText, form, isModal);
+        });
+    } else {
+        // EmailJS not loaded, use mailto fallback
+        sendEmailViaMailto(emailData, submitButton, originalText, form, isModal);
+    }
+}
+
+/**
+ * Fallback function to send email via mailto link
+ * @param {Object} emailData - The email data
+ * @param {HTMLElement} submitButton - The submit button
+ * @param {string} originalText - Original button text
+ * @param {HTMLElement} form - The form element
+ * @param {boolean} isModal - Whether this is from a modal
+ */
+function sendEmailViaMailto(emailData, submitButton, originalText, form, isModal = false) {
+    // Create mailto link
+    const subject = encodeURIComponent(emailData.subject || 'Contact Request');
+    const body = encodeURIComponent(
+        `Name: ${emailData.name}\n` +
+        `Email: ${emailData.email}\n` +
+        `Phone: ${emailData.phone || 'Not provided'}\n` +
+        `Company: ${emailData.company || 'Not provided'}\n` +
+        `Request Type: ${emailData.type || 'General Inquiry'}\n\n` +
+        `Message:\n${emailData.message || 'No message provided'}`
+    );
+    
+    const mailtoLink = `mailto:${CONFIG.CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    
+    // Open mailto link
+    window.location.href = mailtoLink;
+    
+    // Show success message
+    showToast('Opening your email client...', 'info');
+    
+    // Reset form after a delay
+    setTimeout(() => {
+        if (isModal) {
+            closeCTAModal();
+        }
+        form.reset();
+        submitButton.innerHTML = originalText;
+        submitButton.disabled = false;
+    }, 1000);
 }
