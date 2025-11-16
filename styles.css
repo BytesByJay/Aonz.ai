@@ -3182,6 +3182,16 @@ section {
         text-align: center;
     }
     
+    .footer-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
     .footer-bottom {
         flex-direction: column;
         text-align: center;
