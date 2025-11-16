@@ -340,21 +340,28 @@ function initDropdownMenus() {
 // CTA Button Click Handlers
 function initCTAButtons() {
     const ctaButtons = document.querySelectorAll('.cta-button');
-    const contactSection = document.getElementById('contact');
     
     ctaButtons.forEach(button => {
         button.addEventListener('click', function(event) {
-            event.preventDefault();
+            const href = this.getAttribute('href');
             
-            if (contactSection) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = contactSection.offsetTop - headerHeight;
+            // Only handle clicks for same-page anchors
+            if (href && href.startsWith('#')) {
+                const targetId = href.substring(1);
+                const targetSection = document.getElementById(targetId);
                 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                if (targetSection) {
+                    event.preventDefault();
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             }
+            // For links to other pages (like contact.html#contact-form), let the browser handle it naturally
         });
     });
 }
