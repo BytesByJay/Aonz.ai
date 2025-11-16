@@ -2618,12 +2618,8 @@ section {
         text-overflow: ellipsis;
     }
     
-    /* Hide feature cards and quick access on mobile */
+    /* Hide feature cards on mobile */
     .hero-feature-cards {
-        display: none !important;
-    }
-    
-    .hero-quick-access {
         display: none !important;
     }
     
@@ -3804,16 +3800,6 @@ section {
     text-align: center;
 }
 
-/* Hero Quick Access Section */
-.hero-quick-access {
-    margin-top: var(--space-xl);
-    padding: var(--space-lg);
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-}
-
 /* Hero Bottom Section */
 .hero-bottom {
     position: absolute;
@@ -3824,34 +3810,6 @@ section {
     justify-content: center;
     align-items: center;
     z-index: 5;
-}
-
-.quick-access {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-    font-family: var(--font-accent);
-    font-size: 0.875rem;
-}
-
-.quick-label {
-    color: var(--color-text-muted);
-    font-weight: 500;
-}
-
-.quick-link {
-    color: var(--color-text-primary);
-    text-decoration: none;
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-sm);
-    transition: all var(--transition-normal);
-    border: 1px solid transparent;
-}
-
-.quick-link:hover {
-    color: var(--color-primary);
-    border-color: rgba(168, 85, 247, 0.3);
-    background: rgba(168, 85, 247, 0.1);
 }
 
 .scroll-indicator {
