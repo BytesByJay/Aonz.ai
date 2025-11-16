@@ -225,6 +225,22 @@ p {
     text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
 }
 
+.logo-image {
+    height: 25px;
+    width: auto;
+    transition: all var(--transition-bounce);
+}
+
+.logo-image:hover {
+    transform: scale(1.05);
+}
+
+.footer-logo-image {
+    height: 45px;
+    width: auto;
+    margin-bottom: 1rem;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
