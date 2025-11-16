@@ -702,18 +702,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Service and Product Card Click Handlers
-document.addEventListener('DOMContentLoaded', function() {
-    const serviceLinks = document.querySelectorAll('.service-link');
-    const productLinks = document.querySelectorAll('.product-link');
-    
-    [...serviceLinks, ...productLinks].forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            showToast('More details would be shown here', 'info');
-        });
-    });
-});
+// Service and Product Card Click Handlers - Removed to allow normal navigation
+// The links now work normally and navigate to their respective pages
 
 // Add loading animation
 window.addEventListener('load', function() {
