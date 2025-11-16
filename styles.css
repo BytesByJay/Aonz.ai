@@ -13,10 +13,10 @@
     --color-accent: #10b981;
     --color-white: #ffffff;
     --color-black: #000000;
-    --color-gray-900: #0a0a0a;
-    --color-gray-800: #111111;
-    --color-gray-700: #1a1a1a;
-    --color-gray-600: #2a2a2a;
+    --color-gray-900: #0d1420;
+    --color-gray-800: #121b28;
+    --color-gray-700: #1a2332;
+    --color-gray-600: #2a3544;
     --color-text-primary: #ffffff;
     --color-text-secondary: rgba(255, 255, 255, 0.9);
     --color-text-muted: rgba(255, 255, 255, 0.7);
@@ -188,7 +188,7 @@ p {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(10, 10, 10, 0.95);
+    background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     transition: all var(--transition-smooth);
@@ -196,7 +196,7 @@ p {
 }
 
 .header.scrolled {
-    background: rgba(10, 10, 10, 0.98);
+    background: rgba(0, 0, 0, 0.98);
     box-shadow: var(--shadow-lg);
     transform: translateY(0);
 }
@@ -1299,7 +1299,7 @@ section {
 
 /* Services Section */
 .services {
-    background: #111111;
+    background: #121b28;
 }
 
 .services-grid {
@@ -1423,7 +1423,7 @@ section {
 
 /* Products Section */
 .products {
-    background: #0a0a0a;
+    background: #0d1420;
 }
 
 .products-grid {
@@ -1433,7 +1433,7 @@ section {
 }
 
 .product-card {
-    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    background: linear-gradient(135deg, #1a2332, #2a3544);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
@@ -1548,7 +1548,7 @@ section {
 
 /* Industries Section */
 .industries {
-    background: #111111;
+    background: #121b28;
 }
 
 /* Industries Carousel Styles */
@@ -1595,7 +1595,7 @@ section {
 }
 
 .industry-card {
-    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    background: linear-gradient(135deg, #1a2332, #2a3544);
     padding: 2.5rem;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1645,7 +1645,7 @@ section {
 
 /* About Section */
 .about {
-    background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 50%, #0a0a0a 100%);
+    background: linear-gradient(180deg, #0d1420 0%, #121b28 50%, #0d1420 100%);
     position: relative;
     overflow: hidden;
     padding: 6rem 0;
@@ -2073,7 +2073,7 @@ section {
 
 /* Contact Section */
 .contact {
-    background: #111111;
+    background: #121b28;
 }
 
 .contact-content {
@@ -2354,7 +2354,7 @@ section {
 
 /* Form Styles */
 .form {
-    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    background: linear-gradient(135deg, #1a2332, #2a3544);
     padding: 2.5rem;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -2415,7 +2415,7 @@ section {
 
 /* Footer */
 .footer {
-    background: #000000;
+    background: #0d1420;
     padding: 4rem 0 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
