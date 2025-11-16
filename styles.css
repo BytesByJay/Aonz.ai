@@ -93,6 +93,17 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Remove underlines from all links */
+a {
+    text-decoration: none;
+}
+
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;

@@ -147,7 +147,7 @@ function initMobileMenu() {
 
 // Smooth Scrolling for Navigation Links
 function initSmoothScrolling() {
-    const navLinks = document.querySelectorAll('a[href^="#"]');
+    const navLinks = document.querySelectorAll('a[href^="#"]:not(.skip-link)');
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(event) {
@@ -167,6 +167,30 @@ function initSmoothScrolling() {
             }
         });
     });
+    
+    // Handle skip to main content link
+    const skipLink = document.querySelector('.skip-link');
+    if (skipLink) {
+        skipLink.addEventListener('click', function(event) {
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                event.preventDefault();
+                const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
+                const targetPosition = targetElement.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Focus the main content for screen readers
+                targetElement.setAttribute('tabindex', '-1');
+                targetElement.focus();
+            }
+        });
+    }
 }
 
 // Form Handling
