@@ -14,7 +14,7 @@ const CONFIG = {
     EMAILJS_SERVICE_ID: 'service_0wycke7', // e.g., 'service_abc123'
     EMAILJS_TEMPLATE_ID: 'template_5xyb616', // e.g., 'template_xyz789'
     EMAILJS_PUBLIC_KEY: '0IGXwgdA1wKH6MrfX', // e.g., 'abcdefghijklmnop'
-    CONTACT_EMAIL: 'test.dhananjayharidas@gmail.com' // Your contact email
+    CONTACT_EMAIL: 'info@aonz.in' // Your contact email
 };
 
 // DOM Content Loaded Event

@@ -130,8 +130,8 @@ MIT License - See LICENSE file for details
 
 For questions or support, please contact:
 - Website: https://www.aonz.in
-- Email: contact@aonz.in
-- Phone: +1 (800) 123-4567
+- Email: info@aonz.in
+- Phone: +91-98468 60695, +91-98955 66001
 
 ## 🙏 Acknowledgments
 
