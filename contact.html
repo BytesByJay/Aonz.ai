@@ -116,120 +116,104 @@
         </nav>
     </header>
 
-    <!-- Contact Hero Section -->
+    <!-- Contact Page -->
     <main id="main-content">
-    <section class="contact-hero">
+    <section class="contact-hero-simple">
         <div class="hero-bg-elements">
             <div class="gradient-orbs">
                 <div class="orb orb-1"></div>
                 <div class="orb orb-2"></div>
                 <div class="orb orb-3"></div>
             </div>
-            <div class="grid-overlay"></div>
         </div>
         
         <div class="container">
-            <div class="contact-hero-content" data-aos="fade-up" data-aos-duration="1000">
-                <div class="hero-tag" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
-                    <span class="tag-icon">💬</span>
-                    <span>LET'S CONNECT</span>
-                </div>
-                <h1 class="contact-hero-title">Get in Touch</h1>
-                <p class="contact-hero-subtitle">Ready to transform your business? Our AI experts are here to help you navigate your digital transformation journey.</p>
+            <div class="contact-hero-wrapper" data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="contact-main-title">Let's Build Something Amazing Together</h1>
+                <p class="contact-main-subtitle">Tell us about your vision, and we'll help bring it to life with cutting-edge AI solutions.</p>
             </div>
         </div>
     </section>
 
-    <!-- Quick Contact Options -->
-    <section class="quick-contact-section">
+    <!-- Main Contact Section -->
+    <section class="contact-main-section">
         <div class="container">
-            <div class="quick-contact-grid">
-                <div class="quick-contact-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
-                    <div class="contact-card-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <h3>Book a Demo</h3>
-                    <p>See our AI solutions in action. Schedule a personalized demo tailored to your business needs.</p>
-                    <a href="#contact-form" class="contact-card-btn">Schedule Demo</a>
+            <div class="contact-grid-simple">
+                <!-- Contact Form -->
+                <div class="contact-form-simple" data-aos="fade-up" data-aos-duration="800">
+                    <form class="form contact-page-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" id="firstName" name="firstName" placeholder="First Name *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="lastName" name="lastName" placeholder="Last Name *" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Email Address *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" id="phone" name="phone" placeholder="Phone Number">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" id="company" name="company" placeholder="Company Name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <select id="inquiry-type" name="inquiryType" required>
+                                <option value="">How can we help you? *</option>
+                                <option value="demo">Book a Demo</option>
+                                <option value="consultation">Schedule a Consultation</option>
+                                <option value="quote">Get a Quote</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project or requirements... *" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="form-submit-btn-simple">
+                            <span>Send Message</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
                 </div>
                 
-                <div class="quick-contact-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
-                    <div class="contact-card-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <h3>Schedule a Call</h3>
-                    <p>Speak with our experts to discuss your specific requirements and explore solutions.</p>
-                    <a href="#contact-form" class="contact-card-btn">Book Consultation</a>
-                </div>
-                
-                <div class="quick-contact-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
-                    <div class="contact-card-icon">
-                        <i class="fas fa-file-invoice"></i>
-                    </div>
-                    <h3>Get a Quote</h3>
-                    <p>Request a customized quote for your project. We'll provide detailed pricing and timeline estimates.</p>
-                    <a href="#contact-form" class="contact-card-btn">Request Quote</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Information & Form -->
-    <section id="contact-form" class="contact-section">
-        <div class="container">
-            <div class="contact-layout">
-                <!-- Contact Information -->
-                <div class="contact-info-panel" data-aos="fade-right" data-aos-duration="800">
-                    <h2>Contact Information</h2>
-                    <p class="contact-info-description">
-                        We're here to answer your questions and help you discover how AI can transform your business.
-                    </p>
-                    
-                    <div class="contact-info-items">
-                        <div class="contact-info-item">
-                            <div class="info-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="info-content">
-                                <h4>Email</h4>
-                                <a href="mailto:contact@aonz.in">contact@aonz.in</a>
-                            </div>
+                <!-- Contact Info Sidebar -->
+                <div class="contact-info-simple" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="info-card">
+                        <div class="info-card-icon">
+                            <i class="fas fa-envelope"></i>
                         </div>
-                        
-                        <div class="contact-info-item">
-                            <div class="info-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="info-content">
-                                <h4>Phone</h4>
-                                <a href="tel:+18001234567">+1 (800) 123-4567</a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-info-item">
-                            <div class="info-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="info-content">
-                                <h4>Office</h4>
-                                <p>Global offices across major cities</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-info-item">
-                            <div class="info-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="info-content">
-                                <h4>Business Hours</h4>
-                                <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                                <p>Saturday - Sunday: Closed</p>
-                            </div>
-                        </div>
+                        <h3>Email Us</h3>
+                        <a href="mailto:contact@aonz.in">contact@aonz.in</a>
                     </div>
                     
-                    <div class="social-connect">
-                        <h4>Connect With Us</h4>
+                    <div class="info-card">
+                        <div class="info-card-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        <a href="tel:+18001234567">+1 (800) 123-4567</a>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-card-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Visit Us</h3>
+                        <p>Global offices in major cities worldwide</p>
+                    </div>
+                    
+                    <div class="social-section">
+                        <h4>Follow Us</h4>
                         <div class="social-links">
                             <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -238,186 +222,29 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Contact Form -->
-                <div class="contact-form-panel" data-aos="fade-left" data-aos-duration="800">
-                    <h2>Send Us a Message</h2>
-                    <p class="form-description">Fill out the form below and we'll get back to you within 24 hours.</p>
-                    
-                    <form class="form contact-page-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="firstName">First Name <span class="required">*</span></label>
-                                <input type="text" id="firstName" name="firstName" placeholder="John" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastName">Last Name <span class="required">*</span></label>
-                                <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email">Email Address <span class="required">*</span></label>
-                                <input type="email" id="email" name="email" placeholder="john.doe@company.com" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="company">Company Name</label>
-                            <input type="text" id="company" name="company" placeholder="Your Company">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="service">Service Interested In <span class="required">*</span></label>
-                            <select id="service" name="service" required>
-                                <option value="">Select a service</option>
-                                <option value="ai-consulting">AI Consulting & Solutioning</option>
-                                <option value="agentic-ai">Agentic AI</option>
-                                <option value="generative-ai">Generative AI</option>
-                                <option value="predictive-analysis">Predictive Analysis</option>
-                                <option value="virtual-agents">Virtual Agents & Chatbots</option>
-                                <option value="document-processing">Intelligent Document Processing</option>
-                                <option value="products">Product Solutions</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="inquiry-type">Type of Inquiry <span class="required">*</span></label>
-                            <select id="inquiry-type" name="inquiryType" required>
-                                <option value="">Select inquiry type</option>
-                                <option value="demo">Book a Demo</option>
-                                <option value="consultation">Schedule a Call</option>
-                                <option value="quote">Get a Quote</option>
-                                <option value="general">General Inquiry</option>
-                                <option value="partnership">Partnership</option>
-                                <option value="support">Technical Support</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message <span class="required">*</span></label>
-                            <textarea id="message" name="message" rows="6" placeholder="Tell us about your project or requirements..." required></textarea>
-                        </div>
-                        
-                        <div class="form-group checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="newsletter" id="newsletter">
-                                <span>Subscribe to our newsletter for AI insights and updates</span>
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="form-submit-btn">
-                            <i class="fas fa-paper-plane"></i>
-                            Send Message
-                        </button>
-                        
-                        <p class="form-privacy-note">
-                            <i class="fas fa-lock"></i>
-                            Your information is secure and will never be shared with third parties.
-                        </p>
-                    </form>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us Section -->
-    <section class="why-choose-section">
+    <!-- Stats Banner -->
+    <section class="contact-stats-banner">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Why Choose Aonz.AI?</h2>
-                <p>Partner with a leader in AI innovation and digital transformation</p>
-            </div>
-            
-            <div class="why-choose-grid">
-                <div class="why-choose-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="why-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3>Proven Track Record</h3>
-                    <p>500+ successful projects delivered across 50+ countries with 99% client satisfaction.</p>
+            <div class="stats-banner-grid" data-aos="fade-up">
+                <div class="stat-banner-item">
+                    <div class="stat-banner-number">500+</div>
+                    <div class="stat-banner-label">Happy Clients</div>
                 </div>
-                
-                <div class="why-choose-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="why-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Expert Team</h3>
-                    <p>Highly skilled AI specialists, data scientists, and consultants with industry expertise.</p>
+                <div class="stat-banner-item">
+                    <div class="stat-banner-number">99%</div>
+                    <div class="stat-banner-label">Success Rate</div>
                 </div>
-                
-                <div class="why-choose-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="why-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Cutting-Edge Technology</h3>
-                    <p>Leveraging the latest AI, ML, and cloud technologies for innovative solutions.</p>
+                <div class="stat-banner-item">
+                    <div class="stat-banner-number">50+</div>
+                    <div class="stat-banner-label">Countries</div>
                 </div>
-                
-                <div class="why-choose-item" data-aos="fade-up" data-aos-delay="400">
-                    <div class="why-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>24/7 Support</h3>
-                    <p>Dedicated support team available round the clock to assist with your needs.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Frequently Asked Questions</h2>
-                <p>Find answers to common questions about our services</p>
-            </div>
-            
-            <div class="faq-grid">
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="faq-question">
-                        <h4>How long does it take to implement an AI solution?</h4>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Implementation timelines vary based on project complexity, typically ranging from 8-16 weeks for standard solutions. We provide a detailed timeline during the consultation phase.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="faq-question">
-                        <h4>What industries do you specialize in?</h4>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We serve BFSI, Healthcare, Manufacturing, Government, Retail, and more. Our cross-industry expertise allows us to adapt solutions to any vertical.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="faq-question">
-                        <h4>Do you offer ongoing support after implementation?</h4>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, we provide comprehensive post-implementation support, including maintenance, updates, training, and optimization services to ensure long-term success.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
-                    <div class="faq-question">
-                        <h4>Can you work with our existing technology stack?</h4>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Absolutely. We're experienced in integrating with various platforms and technologies. We assess your current infrastructure and ensure seamless integration.</p>
-                    </div>
+                <div class="stat-banner-item">
+                    <div class="stat-banner-number">24/7</div>
+                    <div class="stat-banner-label">Support</div>
                 </div>
             </div>
         </div>
@@ -495,24 +322,6 @@
             delay: 100
         });
 
-        // FAQ Accordion functionality
-        document.querySelectorAll('.faq-item').forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                
-                // Close all FAQ items
-                document.querySelectorAll('.faq-item').forEach(faq => {
-                    faq.classList.remove('active');
-                });
-                
-                // Open clicked item if it wasn't active
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
-        });
-
         // Form submission handling
         const contactForm = document.querySelector('.contact-page-form');
         if (contactForm) {
@@ -522,16 +331,15 @@
                 const firstName = this.querySelector('#firstName').value;
                 const lastName = this.querySelector('#lastName').value;
                 const email = this.querySelector('#email').value;
-                const phone = this.querySelector('#phone').value;
-                const company = this.querySelector('#company').value;
-                const service = this.querySelector('#service').value;
+                const phone = this.querySelector('#phone').value || 'Not provided';
+                const company = this.querySelector('#company').value || 'Not provided';
                 const inquiryType = this.querySelector('#inquiry-type').value;
                 const message = this.querySelector('#message').value;
                 
-                const submitButton = this.querySelector('.form-submit-btn');
-                const originalText = submitButton.innerHTML;
+                const submitButton = this.querySelector('.form-submit-btn-simple');
+                const originalHTML = submitButton.innerHTML;
                 
-                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitButton.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
                 submitButton.disabled = true;
                 
                 // Send email via script.js function
@@ -540,11 +348,11 @@
                     email: email,
                     phone: phone,
                     company: company,
-                    service: service,
-                    message: `Inquiry Type: ${inquiryType}\n\n${message}`,
-                    subject: `${inquiryType} - Contact Form Submission`,
+                    service: inquiryType,
+                    message: message,
+                    subject: `${inquiryType} - Contact Form`,
                     type: inquiryType
-                }, submitButton, originalText, this);
+                }, submitButton, originalHTML, this);
             });
         }
     </script>
