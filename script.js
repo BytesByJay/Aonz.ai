@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initSmoothScrolling();
         initFormHandling();
         initScrollEffects();
+        initIndustriesCarousel();
         initDropdownMenus();
         initCTAButtons();
         initScrollToTop();
@@ -301,13 +302,193 @@ function initScrollEffects() {
         });
     }, observerOptions);
     
-    // Observe cards for animation
-    [...heroCards, ...serviceCards, ...productCards, ...industryCards].forEach(card => {
+    // Observe cards for animation (excluding industry cards as they use carousel animation)
+    [...heroCards, ...serviceCards, ...productCards].forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(30px)';
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(card);
     });
+    
+    // Animate industry cards container instead of individual cards
+    const industriesSection = document.getElementById('industries');
+    if (industriesSection) {
+        industriesSection.style.opacity = '0';
+        industriesSection.style.transform = 'translateY(30px)';
+        industriesSection.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(industriesSection);
+    }
+}
+
+// Industries Carousel with Scroll-Triggered Sliding and Manual Scrolling
+function initIndustriesCarousel() {
+    const carouselTrack = document.getElementById('industriesCarousel');
+    const carouselWrapper = carouselTrack?.parentElement;
+    const industriesSection = document.getElementById('industries');
+    
+    if (!carouselTrack || !carouselWrapper || !industriesSection) {
+        return;
+    }
+    
+    const cards = carouselTrack.querySelectorAll('.industry-card');
+    if (cards.length === 0) {
+        return;
+    }
+    
+    // Calculate carousel dimensions
+    const gap = 32; // 2rem gap
+    let maxScroll = 0;
+    let currentScroll = 0;
+    let isManualScrolling = false;
+    let manualScrollTimeout = null;
+    let isDragging = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    
+    // Function to calculate dimensions
+    function calculateDimensions() {
+        const cardWidth = cards[0].offsetWidth;
+        const cardWithGap = cardWidth + gap;
+        const totalWidth = (cardWithGap * cards.length) - gap;
+        const wrapperWidth = carouselWrapper.offsetWidth;
+        maxScroll = Math.max(0, totalWidth - wrapperWidth);
+    }
+    
+    // Function to update carousel position based on page scroll
+    function updateCarouselPosition() {
+        // Don't update if user is manually scrolling
+        if (isManualScrolling) {
+            return;
+        }
+        
+        const sectionTop = industriesSection.offsetTop;
+        const sectionHeight = industriesSection.offsetHeight;
+        const windowHeight = window.innerHeight;
+        const scrollPosition = window.scrollY;
+        
+        // Calculate when section enters viewport
+        const sectionStart = sectionTop - windowHeight;
+        const sectionEnd = sectionTop + sectionHeight;
+        
+        // Only animate when section is in viewport
+        if (scrollPosition >= sectionStart && scrollPosition <= sectionEnd) {
+            // Calculate progress (0 to 1) as user scrolls through the section
+            const sectionProgress = (scrollPosition - sectionStart) / (sectionEnd - sectionStart);
+            const clampedProgress = Math.max(0, Math.min(1, sectionProgress));
+            
+            // Map progress to carousel scroll position
+            currentScroll = clampedProgress * maxScroll;
+            
+            // Use direct scrollLeft assignment for smooth performance
+            carouselWrapper.scrollLeft = currentScroll;
+        } else if (scrollPosition < sectionStart) {
+            // Reset to start if before section
+            currentScroll = 0;
+            carouselWrapper.scrollLeft = 0;
+        } else if (scrollPosition > sectionEnd) {
+            // Set to end if past section
+            currentScroll = maxScroll;
+            carouselWrapper.scrollLeft = maxScroll;
+        }
+    }
+    
+    // Mark manual scrolling and reset after timeout
+    function setManualScrolling() {
+        isManualScrolling = true;
+        clearTimeout(manualScrollTimeout);
+        manualScrollTimeout = setTimeout(() => {
+            isManualScrolling = false;
+        }, 1500); // Resume auto-scroll after 1.5s of no manual interaction
+    }
+    
+    // Mouse wheel horizontal scrolling
+    carouselWrapper.addEventListener('wheel', function(e) {
+        // Only handle horizontal scrolling or shift+wheel
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey) {
+            e.preventDefault();
+            setManualScrolling();
+            
+            const delta = e.deltaX !== 0 ? e.deltaX : e.deltaY;
+            carouselWrapper.scrollLeft += delta;
+        }
+    }, { passive: false });
+    
+    // Touch support - let native scrolling handle it with touch-action: pan-x
+    // We just track when user interacts to pause auto-scroll
+    carouselWrapper.addEventListener('touchstart', function() {
+        setManualScrolling();
+    }, { passive: true });
+    
+    carouselWrapper.addEventListener('touchmove', function() {
+        setManualScrolling();
+    }, { passive: true });
+    
+    // Mouse drag support for desktop
+    carouselWrapper.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        startX = e.pageX - carouselWrapper.offsetLeft;
+        scrollLeft = carouselWrapper.scrollLeft;
+        setManualScrolling();
+        carouselWrapper.style.cursor = 'grabbing';
+        e.preventDefault();
+    });
+    
+    carouselWrapper.addEventListener('mouseleave', function() {
+        isDragging = false;
+        carouselWrapper.style.cursor = 'grab';
+    });
+    
+    carouselWrapper.addEventListener('mouseup', function() {
+        isDragging = false;
+        carouselWrapper.style.cursor = 'grab';
+    });
+    
+    carouselWrapper.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - carouselWrapper.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed multiplier
+        carouselWrapper.scrollLeft = scrollLeft - walk;
+        setManualScrolling();
+    });
+    
+    // Track wrapper scroll position for manual scrolling detection
+    carouselWrapper.addEventListener('scroll', function() {
+        setManualScrolling();
+        // Sync the scroll position with currentScroll for consistency
+        currentScroll = carouselWrapper.scrollLeft;
+    }, { passive: true });
+    
+    // Throttled scroll handler for performance (page scroll)
+    let ticking = false;
+    function handleScroll() {
+        if (!ticking && !isManualScrolling) {
+            window.requestAnimationFrame(() => {
+                updateCarouselPosition();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+    
+    // Listen to page scroll events
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Recalculate dimensions on resize
+    window.addEventListener('resize', throttle(() => {
+        calculateDimensions();
+        if (!isManualScrolling) {
+            updateCarouselPosition();
+        }
+    }, 250));
+    
+    // Initial calculation and update
+    calculateDimensions();
+    setTimeout(() => {
+        if (!isManualScrolling) {
+            updateCarouselPosition();
+        }
+    }, 100);
 }
 
 // Dropdown Menu Functionality

@@ -1551,10 +1551,47 @@ section {
     background: #111111;
 }
 
-.industries-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+/* Industries Carousel Styles */
+.industries-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(168, 85, 247, 0.3) transparent;
+    cursor: grab;
+    touch-action: pan-x pinch-zoom;
+}
+
+.industries-carousel-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.industries-carousel-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.industries-carousel-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(168, 85, 247, 0.3);
+    border-radius: 4px;
+}
+
+.industries-carousel-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(168, 85, 247, 0.5);
+}
+
+.industries-carousel-wrapper:active {
+    cursor: grabbing;
+}
+
+.industries-carousel-track {
+    display: flex;
     gap: 2rem;
+    pointer-events: auto;
 }
 
 .industry-card {
@@ -1564,12 +1601,33 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
     transition: all 0.3s ease;
+    flex: 0 0 calc(33.333% - 1.34rem);
+    min-width: 280px;
+    scroll-snap-align: start;
 }
 
 .industry-card:hover {
     transform: translateY(-10px);
     border-color: #a855f7;
     box-shadow: 0 20px 40px rgba(168, 85, 247, 0.2);
+}
+
+/* Responsive adjustments for carousel */
+@media (max-width: 1024px) {
+    .industry-card {
+        flex: 0 0 calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .industry-card {
+        flex: 0 0 calc(100% - 0rem);
+        min-width: 100%;
+    }
+    
+    .industries-carousel-wrapper {
+        padding: 1rem 0;
+    }
 }
 
 .industry-icon {
@@ -2668,8 +2726,7 @@ section {
     }
     
     .services-grid,
-    .products-grid,
-    .industries-grid {
+    .products-grid {
         grid-template-columns: 1fr;
     }
     
