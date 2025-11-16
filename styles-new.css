@@ -1781,23 +1781,23 @@ a {
 }
 
 [data-animate="fade-in"] {
-    animation: fadeIn 0.6s ease forwards;
+    animation: fadeIn 0.4s ease forwards;
 }
 
 [data-animate="slide-up"] {
-    animation: slideUp 0.8s ease forwards;
+    animation: slideUp 0.5s ease forwards;
 }
 
 [data-animate="slide-in-left"] {
-    animation: slideInLeft 0.8s ease forwards;
+    animation: slideInLeft 0.5s ease forwards;
 }
 
 [data-animate="slide-in-right"] {
-    animation: slideInRight 0.8s ease forwards;
+    animation: slideInRight 0.5s ease forwards;
 }
 
 [data-animate="zoom-in"] {
-    animation: zoomInBounce 0.6s ease forwards;
+    animation: zoomInBounce 0.4s ease forwards;
 }
 
 [data-delay="100"] {
