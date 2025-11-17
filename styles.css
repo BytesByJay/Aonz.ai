@@ -2189,6 +2189,18 @@ section {
     color: var(--color-text-muted);
 }
 
+.quick-info-item a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.quick-info-item a:focus,
+.quick-info-item a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
 .quick-info-item i {
     color: var(--color-primary);
     font-size: 1.2rem;
