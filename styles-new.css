@@ -65,7 +65,8 @@ html {
 
 body {
     font-family: var(--font-primary);
-    background-color: var(--color-bg-primary);
+    background: linear-gradient(135deg, #0a0a0b 0%, #1a0a2e 50%, #0a0a0b 100%);
+    background-attachment: fixed;
     color: var(--color-text-primary);
     line-height: 1.6;
     overflow-x: hidden;
