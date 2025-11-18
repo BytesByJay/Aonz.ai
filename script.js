@@ -11,9 +11,9 @@ const CONFIG = {
     // EmailJS Configuration
     // TODO: Replace these with your actual EmailJS credentials
     // Get them from https://www.emailjs.com/
-    EMAILJS_SERVICE_ID: 'service_0wycke7', // e.g., 'service_abc123'
-    EMAILJS_TEMPLATE_ID: 'template_5xyb616', // e.g., 'template_xyz789'
-    EMAILJS_PUBLIC_KEY: '0IGXwgdA1wKH6MrfX', // e.g., 'abcdefghijklmnop'
+    EMAILJS_SERVICE_ID: 'service_8h08otv', // e.g., 'service_abc123'
+    EMAILJS_TEMPLATE_ID: 'template_tuo996v', // e.g., 'template_xyz789'
+    EMAILJS_PUBLIC_KEY: 'glzlXFm7h2a3Zew30', // e.g., 'abcdefghijklmnop'
     CONTACT_EMAIL: 'info@aonz.in' // Your contact email
 };
 
