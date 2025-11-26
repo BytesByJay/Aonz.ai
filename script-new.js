@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     initMobileOptimizations();
     initTouchFriendly();
+    initHeroChat();
 });
 
 // Mobile Menu Toggle
@@ -92,6 +93,60 @@ function initScrollAnimations() {
     
     // Activate journey step animation
     animateJourneySteps();
+}
+
+// Hero Chat typing/appearance sequence
+function initHeroChat() {
+    const heroSection = document.querySelector('.hero-section-v2');
+    const userBubble = document.querySelector('.hero-dialogue .user-question');
+    const typingBubble = document.querySelector('.hero-dialogue .typing-indicator');
+    const aiBubble = document.querySelector('.hero-dialogue .ai-answer');
+
+    if (!heroSection || !userBubble || !typingBubble || !aiBubble) return;
+
+    // Initial state: hide all, then reveal in sequence when hero enters viewport
+    [userBubble, typingBubble, aiBubble].forEach(el => {
+        el.classList.add('hero-chat-hidden');
+    });
+
+    let hasPlayed = false;
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !hasPlayed) {
+                hasPlayed = true;
+                startHeroChatSequence(userBubble, typingBubble, aiBubble);
+                observer.disconnect();
+            }
+        });
+    }, {
+        threshold: 0.4
+    });
+
+    observer.observe(heroSection);
+}
+
+function startHeroChatSequence(userBubble, typingBubble, aiBubble) {
+    // Show user question
+    setTimeout(() => {
+        userBubble.classList.remove('hero-chat-hidden');
+        userBubble.classList.add('hero-chat-visible');
+    }, 200);
+
+    // Show typing indicator
+    setTimeout(() => {
+        typingBubble.classList.remove('hero-chat-hidden');
+        typingBubble.classList.add('hero-chat-visible');
+    }, 1100);
+
+    // Hide typing, show AI answer
+    setTimeout(() => {
+        typingBubble.classList.remove('hero-chat-visible');
+        typingBubble.classList.add('hero-chat-hidden');
+
+        aiBubble.classList.remove('hero-chat-hidden');
+        aiBubble.classList.add('hero-chat-visible');
+    }, 2300);
 }
 
 // Animate Journey Steps Progressively

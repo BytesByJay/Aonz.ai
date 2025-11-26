@@ -886,22 +886,31 @@ a {
 .hero-dialogue {
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--spacing-lg);
 }
 
 .hero-dialogue .dialogue-bubble:first-child {
     margin-top: 0;
 }
 
+.hero-dialogue .dialogue-bubble {
+    margin-bottom: 0.4rem;
+}
+
 /* Dialogue Bubbles */
 .dialogue-bubble {
     background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    padding: var(--spacing-xl);
+    border: none;
+    border-radius: 18px;
+    padding: var(--spacing-md) var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
+    max-width: 540px;
+    position: relative;
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
+    transform: translateY(16px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .dialogue-bubble[data-animate="fade-in"] {
@@ -964,9 +973,9 @@ a {
 }
 
 .dialogue-bubble p {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    color: var(--color-text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--color-text-primary);
     margin: 0;
 }
 
@@ -976,13 +985,104 @@ a {
 }
 
 .user-question {
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(8, 145, 178, 0.05));
-    border-color: rgba(6, 182, 212, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.user-question::after {
+    content: '';
+    position: absolute;
+    left: 18px;
+    bottom: -6px;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    transform: rotate(45deg);
+    border-bottom-left-radius: 4px;
 }
 
 .ai-answer {
-    background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(124, 58, 237, 0.05));
-    border-color: rgba(168, 85, 247, 0.3);
+    background: rgba(168, 85, 247, 0.25);
+    color: #ffffff;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.ai-answer p {
+    color: #ffffff;
+}
+
+/* Hero Chat Sequence */
+.hero-chat-hidden {
+    opacity: 0;
+    transform: translateY(16px);
+    max-height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+
+.hero-chat-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.typing-indicator {
+    max-width: 220px;
+    margin-left: auto;
+    margin-right: 0;
+    padding: calc(var(--spacing-sm) * 0.75) var(--spacing-lg);
+    background: rgba(168, 85, 247, 0.08);
+    border-radius: 18px;
+}
+
+.typing-dots {
+    display: flex;
+    gap: 6px;
+    padding-top: 4px;
+}
+
+.typing-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    opacity: 0.4;
+    animation: typingBounce 1s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.typing-dots span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes typingBounce {
+    0%, 80%, 100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+    40% {
+        transform: translateY(-4px);
+        opacity: 1;
+    }
+}
+
+.ai-answer::after {
+    content: '';
+    position: absolute;
+    right: 18px;
+    bottom: -6px;
+    width: 10px;
+    height: 10px;
+    background: rgba(168, 85, 247, 0.25);
+    transform: rotate(45deg);
+    border-bottom-right-radius: 4px;
 }
 
 /* Hero CTA */
